@@ -4,3 +4,35 @@
     margin-left: 20px;
     opacity: 0.3
 }
+
+/* 
+    Targeting the 5 children (5 links) under parent class "menu-options",
+    then further targeting the 5 children under each link (Offcanvas.title)
+
+    In short, targeting the grandchildren of parent class "menu-options"
+*/
+.menu-options > a > *:nth-child(-n+5){
+    color: black;
+}
+
+.menu-options a{
+    text-decoration: none;
+}
+
+.menu-options .offcanvas-title{
+    padding: 10px 0px 10px 3px;
+    margin-bottom: 20px;
+}
+
+
+.menu-options .separator.small.left{
+    height: 1px;
+    width: 90%;
+    margin-left: 5px;
+    opacity: 0.3;
+    
+}
+
+.menu-options .separator.small.left:hover{
+    cursor: pointer;
+}

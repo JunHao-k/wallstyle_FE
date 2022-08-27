@@ -30,21 +30,21 @@ export default function NavBar() {
           <Offcanvas.Title>Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
-        <Offcanvas.Body>
-        <ul>
-            <li>
-              <Link to = "/">Home</Link>
-            </li>
-            <li>
-              <Link to = "/cart">Cart</Link>
-            </li>
-            <li>
-              <Link to = "/login">Login</Link>
-            </li>
-            <li>
-              <Link to = "/register">Register</Link>
-            </li>
-          </ul>
+        <Offcanvas.Body className="menu-options">
+          <Link to = "/"><Offcanvas.Title>Home</Offcanvas.Title></Link>
+          <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
+          
+          <Link to = "/products"><Offcanvas.Title>Products</Offcanvas.Title></Link>
+          <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
+          
+          <Link to = "/cart"><Offcanvas.Title>Cart</Offcanvas.Title></Link>
+          <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
+          
+          <Link to = "/login"><Offcanvas.Title>Login</Offcanvas.Title></Link>
+          <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
+          
+          <Link to = "/register"><Offcanvas.Title>Register</Offcanvas.Title></Link>
+          <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
         </Offcanvas.Body>
       </Offcanvas>
     </React.Fragment>
