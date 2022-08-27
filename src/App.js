@@ -5,8 +5,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Cart from "./pages/Cart"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+import Home from './pages/Home'
 import SideBar from "./components/SideBar"
 import Banner from "./components/Banner"
+
 
 function App() {
   return (
@@ -16,9 +18,10 @@ function App() {
           <Banner/>
           <SideBar/>
         </div>
-        
+    
         <Routes>
-            <Route path = "/" element = {<Cart/>}/>
+            <Route path = "/" element = {<Home/>}/>
+            <Route path = "/cart" element = {<Cart/>}/>
             <Route path = "/login" element = {<Login/>}/>
             <Route path = "/register" element = {<Register/>}/>
         </Routes>
