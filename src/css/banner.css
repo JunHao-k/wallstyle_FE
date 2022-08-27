@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Lekton&family=Roboto:wght@100&display=swap');
+
+.banner-info{
+    display: flex;
+    justify-content: center;
+    background-color: #dfdad3;
+    font-family: "Cedarville Cursive";
+    padding-top: 5px;
+}
