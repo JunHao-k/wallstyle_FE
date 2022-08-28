@@ -1,0 +1,23 @@
+
+@media (min-width: 576px) {
+    #listing-card{
+        width: 7rem;
+    }
+
+}
+
+
+@media (min-width: 768px) { 
+    #listing-card{
+        width: 15rem;
+    }
+
+}
+
+
+@media (min-width: 992px) {
+    #listing-card{
+        width: 17rem;
+    }
+ 
+}
