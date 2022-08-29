@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext , useEffect, useState } from 'react'
 import ProductContext from "../contexts/ProductContext"
 import "../css/products.css"
 import Card from 'react-bootstrap/Card';
@@ -10,7 +10,22 @@ export default function Products() {
     const productContext = useContext(ProductContext)
     //const themes = productContext.getThemes()
     const allProducts = productContext.getProducts()
-    const productsByTheme = productContext.getProductsByTheme()
+    // const productsByTheme = await productContext.getProductsByTheme()
+    // const [productsByTheme , setProductsByTheme] = useState([])
+    // const arr = productContext.getProductsByTheme()
+
+    // if(arr){
+    //     console.log(arr)
+    // }
+    
+    //console.log(themes)
+    // useEffect(() => {
+    //     const getProductsByTheme = (async () => {
+    //         return await productContext.getProductsByTheme()
+    //     })();
+    //     setProductsByTheme(getProductsByTheme)
+    // } , [])
+
     // for(let eachTheme of themes){
     //     console.log(eachTheme)
     // }
@@ -30,7 +45,7 @@ export default function Products() {
     //     return productArr.push(productByTheme)
     // })
 
-    console.log(productsByTheme)
+    //console.log(productsByTheme)
 
     return (
         <React.Fragment>
