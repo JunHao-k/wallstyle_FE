@@ -36,8 +36,8 @@ function App() {
               </ProductsProvider>
             }/>
             {/* <Route path = "/variants" element = {<Variants/>}/> */}
-            <Route path = "/login" element = {<Login/>}/>
-            <Route path = "/register" element = {<Register/>}/>
+            {/* <Route path = "/login" element = {<Login/>}/>
+            <Route path = "/register" element = {<Register/>}/> */}
         </Routes>
       </Router>
     </React.Fragment>
