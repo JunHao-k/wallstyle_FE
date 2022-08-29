@@ -4,7 +4,7 @@ import axios from 'axios';
 // Contexts
 import ProductContext from '../contexts/ProductContext';
 
-const BASE_URL = "https://wall-style.herokuapp.com/api"
+const BASE_URL = "https://wall-style.herokuapp.com/api/products"
 
 export default function ProductsProvider(props) {
     const [products, setProducts] = useState([])
@@ -15,11 +15,11 @@ export default function ProductsProvider(props) {
 
     useEffect(() => {
         const getAllProducts = async () => {
-            let response = await axios.get(BASE_URL + "/products")
+            let response = await axios.get(BASE_URL)
             setProducts(response.data)
         }
         const getAllThemes = async () => {
-            let response = await axios.get(BASE_URL + "/products/themes")
+            let response = await axios.get(BASE_URL + "/themes")
             setThemes(response.data)
             console.log('theme data to state===',response.data)
             tracker.current=false;
@@ -33,7 +33,7 @@ export default function ProductsProvider(props) {
             const getProductsByTheme = async () => {
                 let productByThemeArr = []
                 for(let eachTheme of themes){
-                    let response = await axios.get(BASE_URL + "/products/theme/" + eachTheme[0])
+                    let response = await axios.get(BASE_URL + "/theme/" + eachTheme[0])
                     productByThemeArr.push(response.data[0]) 
                 }
                 setProductsByTheme(productByThemeArr)

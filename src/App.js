@@ -30,7 +30,7 @@ function App() {
                 <Products/>
               </ProductsProvider>
             }/>
-            <Route path = "/variants" element = {
+            <Route path = "/variants/:product_id" element = {
               <ProductsProvider>
                 <Variants/>
               </ProductsProvider>

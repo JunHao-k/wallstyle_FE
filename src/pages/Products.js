@@ -42,7 +42,6 @@ export default function Products() {
     //     console.log("This is the products  => ", products)
     // }
 
-
     return (
         <React.Fragment>
             <h1>Products</h1>
@@ -51,7 +50,7 @@ export default function Products() {
                     {allProducts.length ? Array.from({ length: allProducts.length }).map((_, idx) => (
                         <React.Fragment key={allProducts[idx].id}>
                             <Col className="card-holder">
-                                <Card id="listing-card" as={Link} to={"/variants/:product_id"}>
+                                <Card id="listing-card" as={Link} to={`/variants/${allProducts[idx].id}`}>
                                     <Card.Img variant="top" src={allProducts[idx].image_set} />
                                 </Card>
                             </Col>
