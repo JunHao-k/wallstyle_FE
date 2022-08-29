@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 
 export default function Products() {
 
-    // const BASE_URL = "https://wall-style.herokuapp.com/api"
+    
 
     // let products = []
     // let themes = []
@@ -51,7 +51,7 @@ export default function Products() {
                     {allProducts.length ? Array.from({ length: allProducts.length }).map((_, idx) => (
                         <React.Fragment key={allProducts[idx].id}>
                             <Col className="card-holder">
-                                <Card id="listing-card" as={Link} to={"/variants"}>
+                                <Card id="listing-card" as={Link} to={"/variants/:product_id"}>
                                     <Card.Img variant="top" src={allProducts[idx].image_set} />
                                 </Card>
                             </Col>

@@ -30,12 +30,12 @@ function App() {
                 <Products/>
               </ProductsProvider>
             }/>
-            {/* <Route path = "/products/themes/:theme_id" element = {
+            <Route path = "/variants" element = {
               <ProductsProvider>
                 <Variants/>
               </ProductsProvider>
-            }/> */}
-            <Route path = "/variants" element = {<Variants/>}/>
+            }/>
+            {/* <Route path = "/variants" element = {<Variants/>}/> */}
             <Route path = "/login" element = {<Login/>}/>
             <Route path = "/register" element = {<Register/>}/>
         </Routes>
