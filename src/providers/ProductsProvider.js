@@ -10,6 +10,7 @@ export default function ProductsProvider(props) {
     const [products, setProducts] = useState([])
     const [themes, setThemes] = useState([])
     const [productsByTheme, setProductsByTheme] = useState([])
+    const [contentLoaded , setContentLoaded] = useState(false)
     const tracker =  useRef(true);
 
     useEffect(() => {
@@ -25,51 +26,42 @@ export default function ProductsProvider(props) {
         }
         getAllProducts()
         getAllThemes()
-
-
     }, [])
 
     useEffect(()=>{
         if(!tracker.current){
-            const getProductByTheme = async () => {
+            const getProductsByTheme = async () => {
                 let productByThemeArr = []
-                let response = await axios.get(BASE_URL + "/products/theme/" + themes[0])
-                console.log(response.data)
-                //console.log("Themes => " , themes)
-                // for(let t of themes){
-                //     let response = await axios.get(BASE_URL + "/products/theme/" + t[0])
-                //     productByThemeArr.push(response.data[0]) 
-                // }
-                // setProductsByTheme(productByThemeArr)
+                for(let eachTheme of themes){
+                    let response = await axios.get(BASE_URL + "/products/theme/" + eachTheme[0])
+                    productByThemeArr.push(response.data[0]) 
+                }
+                setProductsByTheme(productByThemeArr)
+                tracker.current = false
             }
-            getProductByTheme()
-            // console.log("Themes in set ==> " , themes)
-            
+            getProductsByTheme()
         }
     },[themes])
+
+    useEffect(() => {
+        if(!tracker.current){
+            setContentLoaded(true)
+            console.log("Desired answer ==> " , productsByTheme)
+        }
+    } , [productsByTheme])
 
     const productContext = {
         getProducts: () => {
             return products
         },
 
-        getProductsByTheme: async () => {
+        contentLoaded: () => {
+            return contentLoaded
+        },
+    
+        getProductsByTheme: () => {
             return productsByTheme
         },
-
-        // getProductsByTheme: async () => {
-        //     console.log("Called function")
-        //     let productByTheme = []
-
-        //     console.log('theme data', themes)
-        //     for(let t of themes){
-        //         let response = await axios.get(BASE_URL + "/products/theme/" + t[0]);
-        //         // console.log(t[0])
-        //         // console.log('Theme data ', response.data)
-        //         productByTheme.push(response.data[0]) 
-        //     }
-        //     return productByTheme
-        // },
 
         getThemes: () => {
             return themes

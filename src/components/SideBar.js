@@ -37,7 +37,7 @@ export default function NavBar() {
           <Link to = "/products"><Offcanvas.Title>Products</Offcanvas.Title></Link>
           <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
           
-          <Link to = "/cart"><Offcanvas.Title>Cart</Offcanvas.Title></Link>
+          <Link to = "/variants"><Offcanvas.Title>Variants</Offcanvas.Title></Link>
           <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
           
           <Link to = "/login"><Offcanvas.Title>Login</Offcanvas.Title></Link>

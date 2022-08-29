@@ -2,11 +2,12 @@ import React from 'react'
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Cart from "./pages/Cart"
+// import Cart from "./pages/Cart"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Home from './pages/Home'
 import Products from './pages/Products';
+import Variants from './pages/Variants';
 import SideBar from "./components/SideBar"
 import Banner from "./components/Banner"
 
@@ -29,7 +30,12 @@ function App() {
                 <Products/>
               </ProductsProvider>
             }/>
-            <Route path = "/cart" element = {<Cart/>}/>
+            {/* <Route path = "/products/themes/:theme_id" element = {
+              <ProductsProvider>
+                <Variants/>
+              </ProductsProvider>
+            }/> */}
+            <Route path = "/variants" element = {<Variants/>}/>
             <Route path = "/login" element = {<Login/>}/>
             <Route path = "/register" element = {<Register/>}/>
         </Routes>

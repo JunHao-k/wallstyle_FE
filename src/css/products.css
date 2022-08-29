@@ -9,7 +9,7 @@
 
 @media (min-width: 768px) { 
     #listing-card{
-        width: 15rem;
+        width: 13rem;
     }
 
 }
@@ -17,7 +17,7 @@
 
 @media (min-width: 992px) {
     #listing-card{
-        width: 17rem;
+        width: 13rem;
     }
  
 }
