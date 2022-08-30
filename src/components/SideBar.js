@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import "../css/navbar.css"
 import { Link, useNavigate } from "react-router-dom"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsHandbag } from "react-icons/bs"
 import { HiOutlineUser } from "react-icons/hi"
+import UserContext from '../contexts/UserContext';
 
 export default function NavBar() {
   const [show, setShow] = useState(false);
@@ -12,6 +13,7 @@ export default function NavBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const navigate = useNavigate()
+  const userContext = useContext(UserContext)
 
   return (
     <React.Fragment>
@@ -37,10 +39,10 @@ export default function NavBar() {
           <Link to = "/products"><Offcanvas.Title>Products</Offcanvas.Title></Link>
           <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
           
-          {/* <Link to = "/variants"><Offcanvas.Title>Variants</Offcanvas.Title></Link>
+          <Offcanvas.Title onClick = {userContext.logout}>Log out</Offcanvas.Title>
           <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
           
-          <Link to = "/login"><Offcanvas.Title>Login</Offcanvas.Title></Link>
+          {/* <Link to = "/login"><Offcanvas.Title>Login</Offcanvas.Title></Link>
           <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
           
           <Link to = "/register"><Offcanvas.Title>Register</Offcanvas.Title></Link>

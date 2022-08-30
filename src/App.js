@@ -10,35 +10,47 @@ import Products from './pages/Products';
 import Variants from './pages/Variants';
 import SideBar from "./components/SideBar"
 import Banner from "./components/Banner"
+import { ToastContainer } from 'react-toastify';
 
 // Providers
 import ProductsProvider from './providers/ProductsProvider';
+import UsersProvider from './providers/UsersProvider';
 
 function App() {
   return (
     <React.Fragment>
       <Router>
         <div className="nav">
-          <Banner/>
-          <SideBar/>
+          <Banner />
+          <UsersProvider><SideBar /></UsersProvider>
         </div>
-    
+
         <Routes>
-            <Route path = "/" element = {<Home/>}/>
-            <Route path = "/products" element = {
-              <ProductsProvider>
-                <Products/>
-              </ProductsProvider>
-            }/>
-            <Route path = "/variants/:product_id" element = {
-              <ProductsProvider>
-                <Variants/>
-              </ProductsProvider>
-            }/>
-            <Route path = "/login" element = {<Login/>}/>
-            <Route path = "/register" element = {<Register/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={
+            <ProductsProvider>
+              <Products />
+            </ProductsProvider>
+          } />
+          <Route path="/variants/:product_id" element={
+            <ProductsProvider>
+              <Variants />
+            </ProductsProvider>
+          } />
+          <Route path="/login" element={
+            <UsersProvider>
+              <Login />
+            </UsersProvider>
+          } />
+
+          <Route path="/register" element={
+            <UsersProvider>
+              <Register />
+            </UsersProvider>
+          } />
         </Routes>
       </Router>
+      <ToastContainer />
     </React.Fragment>
   );
 }

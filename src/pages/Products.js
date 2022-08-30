@@ -28,6 +28,7 @@ export default function Products() {
     //     }
     //     start()
     // } , [])
+    
     const productContext = useContext(ProductContext)
     // themes = productContext.getThemes()
     // console.log("Get all themes ==> ", themes)
