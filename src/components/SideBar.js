@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import "../css/navbar.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { GiHamburgerMenu } from "react-icons/gi";
-import { BsSearch } from "react-icons/bs"
 import { BsHandbag } from "react-icons/bs"
+import { HiOutlineUser } from "react-icons/hi"
 
 export default function NavBar() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate()
 
   return (
     <React.Fragment>
@@ -19,10 +20,9 @@ export default function NavBar() {
         <GiHamburgerMenu size="1.5em" color="grey" onClick={handleShow} style = {{marginLeft: ".5em"}}/>
         <h2>Home</h2>
         <div className="navbar-icons">
-          <BsSearch size = "1.5em" color = "grey" style = {{marginRight: ".5em"}}/>
+          <HiOutlineUser size = "1.5em" color = "grey" style = {{marginRight: ".5em"}} onClick = {() => navigate("/login")}/>
           <BsHandbag size = "1.5em" color = "grey" style = {{marginRight: ".5em"}}/>
         </div>
-        
       </div>
       
       <Offcanvas show={show} onHide={handleClose}>

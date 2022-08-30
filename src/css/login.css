@@ -1,0 +1,14 @@
+.login-section{
+    box-sizing: border-box;
+    padding: 2vw 7vw 2vw 7vw;
+    font-family: Madera,sans-serif;
+    font-size: 14px;
+    border-bottom: 0.5px solid #888888;
+}
+
+.login-section .title {
+    text-align: center;
+    font-size: 150%;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+} 

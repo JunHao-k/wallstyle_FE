@@ -129,7 +129,7 @@ export default function Variants() {
               </option>
             ))}
           </Form.Select>
-          <a href="#" class="btn btn-dark btn-outline-light mt-3">Add to cart</a>
+          <a class="btn btn-dark btn-outline-light mt-3">Add to cart</a>
         </Form.Group>
         
       </div>
