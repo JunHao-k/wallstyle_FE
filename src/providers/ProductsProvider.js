@@ -11,6 +11,12 @@ export default function ProductsProvider(props) {
     const [themes, setThemes] = useState([])
     const [productsByTheme, setProductsByTheme] = useState([])
     const [contentLoaded , setContentLoaded] = useState(false)
+    const [searchQuery , setSearchQuery] = useState({
+        "title": '',
+        "on_sales": '',
+        "themes": "",
+        "combo": ""
+    })
     const tracker =  useRef(true);
 
     useEffect(() => {
@@ -51,6 +57,8 @@ export default function ProductsProvider(props) {
     } , [productsByTheme])
 
     const productContext = {
+        searchQuery , setSearchQuery,
+        
         getProducts: () => {
             return products
         },

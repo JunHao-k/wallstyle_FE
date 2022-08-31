@@ -22,7 +22,11 @@ function App() {
       <Router>
         <div className="nav">
           <Banner />
-          <UsersProvider><SideBar /></UsersProvider>
+          <UsersProvider>
+            <ProductsProvider>
+              <SideBar/>
+            </ProductsProvider>
+          </UsersProvider>
         </div>
 
         <Routes>
