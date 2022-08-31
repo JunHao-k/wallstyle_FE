@@ -1,48 +1,42 @@
 import React, { useState, useContext } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Accordion from 'react-bootstrap/Accordion';
-import Form from 'react-bootstrap/Form';
 import "../css/navbar.css"
 import { Link, useNavigate } from "react-router-dom"
 import { GiHamburgerMenu } from "react-icons/gi";
-import { BsHandbag, BsSearch } from "react-icons/bs"
+import { BsHandbag } from "react-icons/bs"
 import { HiOutlineUser } from "react-icons/hi"
+import { TbReportMoney } from "react-icons/tb"
+
 
 import UserContext from '../contexts/UserContext';
-import ProductContext from '../contexts/ProductContext';
+//import ProductContext from '../contexts/ProductContext';
 
 export default function NavBar() {
-  const [show, setShow] = useState(false);
 
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const navigate = useNavigate()
   const userContext = useContext(UserContext)
-  const productContext = useContext(ProductContext)
-  const themes = productContext.getThemes()
-  //console.log(themes)
-  
 
-  const searchQuery = productContext.searchQuery
-  const updateFormField = (event) => {
-    productContext.setSearchQuery({
-      ...searchQuery,
-      [event.target.name]: event.target.value
-    })
-  }
+  const first_name = JSON.parse(localStorage.getItem("userData")) ? JSON.parse(localStorage.getItem("userData")).data.first_name : null
+  const last_name = JSON.parse(localStorage.getItem("userData")) ? JSON.parse(localStorage.getItem("userData")).data.last_name : null
 
   return (
     <React.Fragment>
       <div className="navbar d-flex">
+
         <div className="navbar-icons">
           <GiHamburgerMenu size="1.5em" color="grey" onClick={handleShow} style={{ marginLeft: ".5em" }} />
-          <BsSearch size="1.5em" color="grey" style={{ marginLeft: ".5em" }} className="d-sm-block d-md-none d-lg-none"/>
         </div>
-        <h2>Home</h2>
+
+        <h2 className = "user-name">{JSON.parse(localStorage.getItem("userData")) ? `Welcome ${first_name} ${last_name}` : ""}</h2>
+        
         <div className="navbar-icons">
-          <HiOutlineUser size="1.5em" color="grey" style={{ marginRight: ".5em" }} onClick={() => navigate("/login")} />
+          {JSON.parse(localStorage.getItem("userData")) ? <TbReportMoney size="1.5em" color="grey" style={{ marginRight: ".5em" }}/> : <HiOutlineUser size="1.5em" color="grey" style={{ marginRight: ".5em" }} onClick={() => navigate("/login")} />}
           <BsHandbag size="1.5em" color="grey" style={{ marginRight: ".5em" }} />
         </div>
+
       </div>
 
       <Offcanvas className="sidebar-offcancvas" show={show} onHide={handleClose}>
@@ -57,7 +51,7 @@ export default function NavBar() {
           <Link to="/products"><Offcanvas.Title onClick={handleClose}>Products</Offcanvas.Title></Link>
           <div className="separator small left" style={{ backgroundColor: "#494949" }}></div>
 
-          <Offcanvas.Title onClick={userContext.logout}>Log out</Offcanvas.Title>
+          <Offcanvas.Title onClick={async () => {await userContext.logout() ; handleClose()}}>Log out</Offcanvas.Title>
           <div className="separator small left" style={{ backgroundColor: "#494949" }}></div>
 
           {/* <Link to = "/login"><Offcanvas.Title>Login</Offcanvas.Title></Link>

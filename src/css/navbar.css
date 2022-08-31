@@ -1,4 +1,4 @@
-.separator.small.left{
+.separator.small.left {
     height: 1px;
     width: 90%;
     margin-left: 20px;
@@ -11,30 +11,30 @@
 
     In short, targeting the grandchildren of parent class "menu-options"
 */
-.menu-options > a > *:nth-child(-n+5){
+.menu-options>a>*:nth-child(-n+5) {
     color: black;
 }
 
-.menu-options a{
+.menu-options a {
     text-decoration: none;
 }
 
-.menu-options .offcanvas-title{
+.menu-options .offcanvas-title {
     padding: 10px 0px 10px 3px;
     margin-bottom: 20px;
     border-bottom: 3px red;
 }
 
 
-.menu-options .separator.small.left{
+.menu-options .separator.small.left {
     height: 1px;
     width: 90%;
     margin-left: 5px;
     opacity: 0.3;
-    
+
 }
 
-.menu-options .separator.small.left:hover{
+.menu-options .separator.small.left:hover {
     cursor: pointer;
 }
 
@@ -47,6 +47,33 @@
 
 .accordion-button:focus {
     box-shadow: none;
-    border-color: rgba(0,0,0,.125);
+    border-color: rgba(0, 0, 0, .125);
 }
 
+
+.user-name {
+    font-size: 18px ;
+}
+
+
+
+/* @media (min-width: 768px) { 
+    #listing-card{
+        width: 13rem;
+    }
+    #accordion-header > .accordion-button{
+        font-size: 24px;
+        background-color: #f9f8f6;
+    }
+}
+
+
+@media (min-width: 992px) {
+    #listing-card{
+        width: 13rem;
+    }
+    #accordion-header > .accordion-button{
+        font-size: 27px;
+        background-color: #f9f8f6;
+    }
+} */

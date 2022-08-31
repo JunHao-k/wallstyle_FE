@@ -3,6 +3,10 @@
     #listing-card{
         width: 7rem;
     }
+    #accordion-header > .accordion-button{
+        font-size: 16px;
+        background-color: #f9f8f6;
+    }
 
 }
 
@@ -11,7 +15,10 @@
     #listing-card{
         width: 13rem;
     }
-
+    #accordion-header > .accordion-button{
+        font-size: 24px;
+        background-color: #f9f8f6;
+    }
 }
 
 
@@ -19,11 +26,10 @@
     #listing-card{
         width: 13rem;
     }
-    
- 
+    #accordion-header > .accordion-button{
+        font-size: 27px;
+        background-color: #f9f8f6;
+    }
 }
 
-#accordion-header > .accordion-button{
-    font-size: 30px;
-    background-color: #f9f8f6;
-}
+

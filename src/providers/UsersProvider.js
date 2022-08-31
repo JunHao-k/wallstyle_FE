@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import UserContext from '../contexts/UserContext';
 import axios from 'axios'
 import { toast } from 'react-toastify';
@@ -20,8 +20,16 @@ export default function UsersProvider(props){
         'password': ''
     })
 
-    const [myTokens , inputTokens] = useState({})
+    const [myTokens , inputTokens] = useState(null)
     const [customer , setCustomer] = useState(null)
+    const tracker =  useRef(true);
+    
+    useEffect(() => {
+        if(!tracker.current){
+            console.log(customer)
+        }
+    }, [customer])
+    // customer@test.com
     
     const userContext = {
         registerInfo, setRegisterInfo, loginData, setLoginData,
@@ -52,10 +60,15 @@ export default function UsersProvider(props){
         login: async (loginData) => {
             const response = await axios.post(BASE_URL + "/login" , loginData)
             if(response){
-                //console.log("This is response.data ==> " , response.data)
+                // console.log("This is response.data ==> " , response.data)
+                const userData = await axios.get(BASE_URL + "/profile" , {
+                    headers: {
+                        Authorization: `Bearer ${response.data.accessToken}`
+                    }
+                })
                 inputTokens(response.data)
-                
                 localStorage.setItem('myTokens' , JSON.stringify(response.data))
+                localStorage.setItem('userData' , JSON.stringify(userData))
                 setLoginData({
                     'email': '',
                     'password': ''
@@ -80,9 +93,23 @@ export default function UsersProvider(props){
                 refreshToken: tokenSet.refreshToken
             })
             localStorage.removeItem('myTokens')
+            localStorage.removeItem('userData')
             inputTokens(null)
             setCustomer(null)
             console.log("After logging out ==> " , JSON.parse(localStorage.getItem("myTokens")))
+            toast.success('See you soon!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        },
+
+        getUserData: () => {
+            return customer
         }
         
     }

@@ -4,14 +4,14 @@ import axios from 'axios';
 // Contexts
 import ProductContext from '../contexts/ProductContext';
 
-const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/products"
-//const BASE_URL = "https://wall-style.herokuapp.com/api/products"
+//const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/products"
+const BASE_URL = "https://wall-style.herokuapp.com/api/products"
 
 export default function ProductsProvider(props) {
     const [products, setProducts] = useState([])
     const [themes, setThemes] = useState([])
-    const [productsByTheme, setProductsByTheme] = useState([])
-    const [contentLoaded , setContentLoaded] = useState(false)
+    // const [productsByTheme, setProductsByTheme] = useState([])
+    // const [contentLoaded , setContentLoaded] = useState(false)
     const [searchQuery , setSearchQuery] = useState({
         "title": '',
         "on_sales": '',
@@ -20,8 +20,6 @@ export default function ProductsProvider(props) {
     })
     const tracker =  useRef(true);
     
-    //let searchResults = null
-
     useEffect(() => {
         const getAllProducts = async () => {
             let response = await axios.get(BASE_URL)
@@ -30,7 +28,7 @@ export default function ProductsProvider(props) {
         const getAllThemes = async () => {
             let response = await axios.get(BASE_URL + "/themes")
             setThemes(response.data)
-            console.log('theme data to state===',response.data)
+            //console.log('theme data to state===',response.data)
             tracker.current=false;
         }
         getAllProducts()
@@ -61,20 +59,27 @@ export default function ProductsProvider(props) {
 
 
     const getProductsBySearch = async () => {
-        console.log(searchQuery)
+        //console.log(searchQuery)
         const response = await axios.get(BASE_URL + "/search" , {params: searchQuery})
-        console.log("This is what is passed into backend = " , response.data)
+        //console.log("This is what is passed into backend = " , response.data)
         setProducts(response.data)
-        tracker.current = true
+        //tracker.current = true
         return response.data
     }
 
-    useEffect(() => {
-        if(!tracker.current){
-            console.log("products saved in state => " , products)
-            setContentLoaded(true)
-        }
-    } , [products])
+    const resetSearch = async () => {
+        setSearchQuery({})
+        let response = await axios.get(BASE_URL)
+        setProducts(response.data)
+        console.log("This is searchQuery after clearing ==> " , searchQuery)
+    }
+
+    // useEffect(() => {
+    //     if(!tracker.current){
+    //         console.log("products saved in state => " , products)
+    //         setContentLoaded(true)
+    //     }
+    // } , [products])
 
     const productContext = {
         searchQuery , setSearchQuery,
@@ -83,13 +88,13 @@ export default function ProductsProvider(props) {
             return products
         },
 
-        contentLoaded: () => {
-            return contentLoaded
-        },
+        // contentLoaded: () => {
+        //     return contentLoaded
+        // },
     
-        getProductsByTheme: () => {
-            return productsByTheme
-        },
+        // getProductsByTheme: () => {
+        //     return productsByTheme
+        // },
 
         getThemes: () => {
             return themes
@@ -98,8 +103,12 @@ export default function ProductsProvider(props) {
         setSearchProducts: async () => {
             await getProductsBySearch()
             return products
-        }
+        },
 
+        triggerResetSearch: async () => {
+            await resetSearch()
+            return products
+        }
     }
 
     return (
