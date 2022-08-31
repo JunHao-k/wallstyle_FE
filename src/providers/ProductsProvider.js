@@ -4,7 +4,8 @@ import axios from 'axios';
 // Contexts
 import ProductContext from '../contexts/ProductContext';
 
-const BASE_URL = "https://wall-style.herokuapp.com/api/products"
+const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/products"
+//const BASE_URL = "https://wall-style.herokuapp.com/api/products"
 
 export default function ProductsProvider(props) {
     const [products, setProducts] = useState([])
@@ -18,6 +19,8 @@ export default function ProductsProvider(props) {
         "combo": ""
     })
     const tracker =  useRef(true);
+    
+    //let searchResults = null
 
     useEffect(() => {
         const getAllProducts = async () => {
@@ -34,31 +37,48 @@ export default function ProductsProvider(props) {
         getAllThemes()
     }, [])
 
-    useEffect(()=>{
-        if(!tracker.current){
-            const getProductsByTheme = async () => {
-                let productByThemeArr = []
-                for(let eachTheme of themes){
-                    let response = await axios.get(BASE_URL + "/theme/" + eachTheme[0])
-                    productByThemeArr.push(response.data[0]) 
-                }
-                setProductsByTheme(productByThemeArr)
-                tracker.current = false
-            }
-            getProductsByTheme()
-        }
-    },[themes])
+    // useEffect(()=>{
+    //     if(!tracker.current){
+    //         const getProductsByTheme = async () => {
+    //             let productByThemeArr = []
+    //             for(let eachTheme of themes){
+    //                 let response = await axios.get(BASE_URL + "/theme/" + eachTheme[0])
+    //                 productByThemeArr.push(response.data[0]) 
+    //             }
+    //             setProductsByTheme(productByThemeArr)
+    //             tracker.current = false
+    //         }
+    //         getProductsByTheme()
+    //     }
+    // },[themes])
+
+    // useEffect(() => {
+    //     if(!tracker.current){
+    //         setContentLoaded(true)
+    //         console.log("Desired answer ==> " , productsByTheme)
+    //     }
+    // } , [productsByTheme])
+
+
+    const getProductsBySearch = async () => {
+        console.log(searchQuery)
+        const response = await axios.get(BASE_URL + "/search" , {params: searchQuery})
+        console.log("This is what is passed into backend = " , response.data)
+        setProducts(response.data)
+        tracker.current = true
+        return response.data
+    }
 
     useEffect(() => {
         if(!tracker.current){
+            console.log("products saved in state => " , products)
             setContentLoaded(true)
-            console.log("Desired answer ==> " , productsByTheme)
         }
-    } , [productsByTheme])
+    } , [products])
 
     const productContext = {
         searchQuery , setSearchQuery,
-        
+        products, 
         getProducts: () => {
             return products
         },
@@ -73,6 +93,11 @@ export default function ProductsProvider(props) {
 
         getThemes: () => {
             return themes
+        },
+
+        setSearchProducts: async () => {
+            await getProductsBySearch()
+            return products
         }
 
     }

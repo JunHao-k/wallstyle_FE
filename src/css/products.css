@@ -19,5 +19,11 @@
     #listing-card{
         width: 13rem;
     }
+    
  
+}
+
+#accordion-header > .accordion-button{
+    font-size: 30px;
+    background-color: #f9f8f6;
 }
