@@ -14,14 +14,27 @@ export default function CartProvider(props){
         'variantId': ''
     })
 
-    
-
     const cartContext = {
         bodyInfo, setBodyInfo,
         addCartItem: async (bodyInfo) => {
             const tokens = JSON.parse(localStorage.getItem("myTokens"))
-            if(tokens.accessToken){
-                const response = await axios.post(BASE_URL + `/${bodyInfo.variantId}/add`)
+            try{
+                if(tokens.accessToken){
+                    const response = await axios.post(BASE_URL + `/${bodyInfo.variantId}/add` , {
+                        'frameId': bodyInfo.frameId,
+                        'dimensionId': bodyInfo.dimensionId,
+                        'quantity': bodyInfo.quantity
+                    },{
+                        headers: {
+                            Authorization: `Bearer ${tokens.accessToken}`
+                        }
+                    })
+                    console.log(response)
+                    return response
+                }
+            }
+            catch(error){
+                console.log(error)
             }
             
         }

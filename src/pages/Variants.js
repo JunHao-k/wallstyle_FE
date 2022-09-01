@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import "../css/products.css"
 import "../css/carousell.css"
 import axios from 'axios'
@@ -17,8 +17,10 @@ export default function Variants() {
   const [variants, setVariants] = useState([])
   const [product, setProduct] = useState([])
   const tracker = useRef(true);
+  const navigate = useNavigate()
 
   const setFormState = cartContext.setBodyInfo
+  const createCartItem = cartContext.addCartItem
 
   const updateFormField = (event) => {
     setFormState({
@@ -26,6 +28,17 @@ export default function Variants() {
         [event.target.name]: event.target.value // Rewrite the key that has changed
     })
   }
+
+  const addToCart = async () => {
+    const addCartRes = await createCartItem(cartContext.bodyInfo)
+    if(addCartRes){
+      navigate("/products")
+    }
+    else{
+      console.log("Item not added into cart properly")
+    }
+  }
+
 
   // 'frameId': '',
   // 'dimensionId': '',
@@ -151,7 +164,7 @@ export default function Variants() {
             ))}
           </Form.Select>
           
-          <a className="btn btn-dark btn-outline-light mt-3">Add to cart</a>
+          <a className="btn btn-dark btn-outline-light mt-3" onClick = {addToCart}>Add to cart</a>
           
         </Form.Group>
         
