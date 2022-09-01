@@ -47,6 +47,31 @@ export default function NavBar() {
 
   const [editCartPage, setEditPage] = useState(false)
 
+  const [priceTable , setPrices] = useState([])
+  
+
+  const calculatePrices = async () => {
+    let prices = {
+      original: [],
+      discounted: [],
+      total: 0
+    }
+    let cart = tracker.current.cartItems
+    //console.log("This is tracker from calculate price ==> " , cart)
+
+    for (let item of cart) {
+      let originalPrice = (item.dimension.dimension_cost + item.frame.frame_cost) * item.quantity
+      let discountedPrice = ((100 - (item.variant.product.sales)) / 100) * originalPrice
+
+      prices.original.push(originalPrice)
+      prices.discounted.push(discountedPrice)
+      prices.total = prices.total + discountedPrice
+
+    }
+    return prices
+
+  }
+
   const loadCartItems = async () => {
     setCartLoaded(false)
     handleCartShow()
@@ -54,6 +79,9 @@ export default function NavBar() {
     setCartItems(loadedCartItems)
     tracker.current = loadedCartItems
     console.log("The tracker current ==> ", tracker.current)
+    let allPrices = await calculatePrices()
+    //console.log("allPrices ==> " , allPrices)
+    setPrices(allPrices)
     setCartLoaded(true)
 
   }
@@ -62,7 +90,19 @@ export default function NavBar() {
     (async () => {
       console.log("The state of the cart items ==> ", cart)
       console.log("The tracker current ==> ", tracker.current)
-      
+
+      // for(let item of cart){
+      //   let originalPrice = (item.dimension.dimension_cost + item.frame.frame_cost) * item.quantity
+      //   let discountedPrice = ((100-(item.variant.product.sales))/100) * originalPrice
+
+      //   tracker.current.original.push(originalPrice)
+      //   tracker.current.discounted.push(discountedPrice)
+      //   tracker.current.total = tracker.current.total + discountedPrice
+
+      //   console.log("This is current tracker ==> " , tracker.current)
+
+      // }
+
     })()
   }, [cart])
 
@@ -140,9 +180,10 @@ export default function NavBar() {
                   {Array.from({ length: tracker.current.cartItems.length }).map((_, idx) => (
                     <ListGroup.Item >
                       <div className="row">
-                        <div className="col-4 d-flex justify-content-center align-items-center">
+                        <div className="col-4 d-flex-column justify-content-center align-items-center">
                           <img src={tracker.current.cartItems[idx].variant.model_image} alt="..." className="img-fluid" style={{ aspectRatio: "1/1", objectFit: "cover" }} />
                         </div>
+                       
                         {
                           editCartPage ?
                             <div className="col-8">
@@ -165,10 +206,12 @@ export default function NavBar() {
                                       {
                                         `${tracker.current.cartItems[idx].dimension.dimension_size} / 
                                         ${tracker.current.cartItems[idx].variant.model_name} / 
-                                        ${tracker.current.cartItems[idx].frame.frame_type}  $17.30`
+                                        ${tracker.current.cartItems[idx].frame.frame_type} (On sale)`
                                       }
+
                                     </span>
                                   </div>
+                                  <div><span style={{ fontSize: "12px" }}>${(priceTable.discounted[idx]/100).toFixed(2)}</span></div>
                                 </div>
                               </div>
                               <div className="col-2 d-flex flex-column justify-content-around align-items-center">
@@ -184,9 +227,12 @@ export default function NavBar() {
                 </React.Fragment>
                 : <h1>Waiting</h1>
             }
-
-
-
+          </ListGroup>
+          <ListGroup>
+            <div className="d-flex">
+              <div>Subtotal:</div>
+              <div>${(priceTable.total/100).toFixed(2)}</div>
+            </div>
           </ListGroup>
         </Offcanvas.Body>
       </Offcanvas>
