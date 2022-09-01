@@ -29,7 +29,6 @@ export default function UsersProvider(props){
             console.log(customer)
         }
     }, [customer])
-    // customer@test.com
     
     const userContext = {
         registerInfo, setRegisterInfo, loginData, setLoginData,

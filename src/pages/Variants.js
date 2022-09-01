@@ -5,16 +5,33 @@ import "../css/carousell.css"
 import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel';
 import ProductContext from "../contexts/ProductContext"
+import CartContext from '../contexts/CartContext';
 import Form from 'react-bootstrap/Form';
 
 export default function Variants() {
 
   const BASE_URL = "https://wall-style.herokuapp.com/api/products"
   const productContext = useContext(ProductContext)
+  const cartContext = useContext(CartContext)
   const { product_id } = useParams();
   const [variants, setVariants] = useState([])
   const [product, setProduct] = useState([])
   const tracker = useRef(true);
+
+  const setFormState = cartContext.setBodyInfo
+
+  const updateFormField = (event) => {
+    setFormState({
+        ...cartContext.bodyInfo, // Duplicate the original form object
+        [event.target.name]: event.target.value // Rewrite the key that has changed
+    })
+  }
+
+  // 'frameId': '',
+  // 'dimensionId': '',
+  // 'quantity': 1
+
+
 
   const getVariant = async () => {
     let response = await axios.get(BASE_URL + '/variants/' + product_id)
@@ -31,7 +48,7 @@ export default function Variants() {
   useEffect(() => {
     const start = async () => {
       let variantData = await getVariant()
-      //console.log("This is the variant data  ===>  " , variantData)
+      console.log("This is the variant data  ===>  " , variantData)
       console.log("This is variants state ==> " , variants)
       let productData = await getProduct()
       console.log("This is the product data  ===>  ", productData)
@@ -42,9 +59,13 @@ export default function Variants() {
   useEffect(() => {
     if (!tracker.current) {
       tracker.current = variants
-      // for (let i = 0; i < variants.length; i++) {
-      //   tracker.current.push(variants[i].model_image)
-      // }
+      console.log("This is in tracker.current ==> " , tracker.current)
+      setFormState({
+        ...cartContext.bodyInfo, // Duplicate the original form object
+        "frameId": 1,
+        "dimensionId": 1,
+        "variantId": tracker.current[0].id
+    })
     }
   }, [variants])
 
@@ -104,7 +125,7 @@ export default function Variants() {
         <Form.Group className="mb-3 p-3 d-flex flex-column justify-content-around">
 
           <Form.Label>Choose a dimension</Form.Label>
-          <Form.Select aria-label="Default select example" name="ratings">
+          <Form.Select aria-label="Default select example" name="dimensionId" onChange = {updateFormField}>
             {/* <option>-- Dimensions --</option> */}
             <option value="1">30cm x 40cm</option>
             <option value="2">40cm x 60cm</option>
@@ -113,7 +134,7 @@ export default function Variants() {
           </Form.Select>
 
           <Form.Label>Choose a Frame</Form.Label>
-          <Form.Select aria-label="Default select example" name="ratings">
+          <Form.Select aria-label="Default select example" name="frameId" onChange = {updateFormField}>
             {/* <option>-- Frames --</option> */}
             <option value="1">Canvas Only</option>
             <option value="2">Stretch Frame</option>
@@ -121,7 +142,7 @@ export default function Variants() {
           </Form.Select>
 
           <Form.Label>Choose a Model</Form.Label>
-          <Form.Select aria-label="Default select example" name="ratings">
+          <Form.Select aria-label="Default select example" name="variantId" onChange = {updateFormField}>
             <option>-- Models --</option>
             {Array.from({ length: variants.length }).map((_, idx) => (
               <option value={variants[idx].id}>
@@ -129,6 +150,7 @@ export default function Variants() {
               </option>
             ))}
           </Form.Select>
+          
           <a className="btn btn-dark btn-outline-light mt-3">Add to cart</a>
           
         </Form.Group>

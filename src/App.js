@@ -15,6 +15,7 @@ import { ToastContainer } from 'react-toastify';
 // Providers
 import ProductsProvider from './providers/ProductsProvider';
 import UsersProvider from './providers/UsersProvider';
+import CartProvider from './providers/CartProvider';
 
 function App() {
   return (
@@ -38,7 +39,9 @@ function App() {
           } />
           <Route path="/variants/:product_id" element={
             <ProductsProvider>
-              <Variants />
+              <CartProvider>
+                <Variants />
+              </CartProvider>
             </ProductsProvider>
           } />
           <Route path="/login" element={
