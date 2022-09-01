@@ -25,7 +25,9 @@ function App() {
           <Banner />
           <UsersProvider>
             <ProductsProvider>
-              <SideBar/>
+              <CartProvider>
+                <SideBar/>
+              </CartProvider>
             </ProductsProvider>
           </UsersProvider>
         </div>
