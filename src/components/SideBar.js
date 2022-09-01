@@ -41,7 +41,7 @@ export default function NavBar() {
   const handleCartClose = () => setCartShow(false)
   const handleCartShow = () => setCartShow(true)
 
-  const [cartItems, setCartItems] = useState([])
+  const [cart, setCartItems] = useState([])
   const [cartLoaded, setCartLoaded] = useState(false);
   const [forceReload, setForceReload] = useState(false)
 
@@ -53,21 +53,18 @@ export default function NavBar() {
     const loadedCartItems = await cartContext.getCart()
     setCartItems(loadedCartItems)
     tracker.current = loadedCartItems
-    console.log("The tracker current ==> " , tracker.current)
+    console.log("The tracker current ==> ", tracker.current)
     setCartLoaded(true)
-    
+
   }
 
   useEffect(() => {
     (async () => {
-      console.log("The state of the cart items ==> " , cartItems)
-      console.log("The tracker current ==> " , tracker.current)
-      // if(tracker.current){
-      //   tracker.current = cartItems.cartItems
-      // }
-      // console.log("This is tracker current ==> " , tracker.current.cartItems.cartItems)
+      console.log("The state of the cart items ==> ", cart)
+      console.log("The tracker current ==> ", tracker.current)
+      
     })()
-  },[cartItems])
+  }, [cart])
 
   const makePageReload = () => {
     setForceReload(true)
@@ -139,48 +136,55 @@ export default function NavBar() {
           <ListGroup variant="flush">
             {
               tracker.current.cartItems ?
-              <React.Fragment>
-              {Array.from({ length: tracker.current.cartItems.length }).map((_, idx) => (
-                <ListGroup.Item >
-                  <div className="row">
-                    <div className="col-4 d-flex justify-content-center align-items-center">
-                      <img src={tracker.current.cartItems[idx].variant.model_image} alt="..." className="img-fluid" style={{ aspectRatio: "1/1", objectFit: "cover" }} />
-                    </div>
-                    {
-                      editCartPage ?
-                        <div className="col-8">
-                          <div>
-                            Testing
-                            <Form.Group controlId="formAuthorName">
-                              <Form.Label>Update quantity</Form.Label>
-                              <Form.Control type="number" name="newQuantity" min="1" max="10" />
-                            </Form.Group>
-                            <MdDoneOutline onClick={makePageReload} />
-                          </div>
-  
-                        </div> :
-                        <React.Fragment>
-                          <div className="col-6">
-                            <div>
-                              <div><span style={{ fontSize: "14px" }}>{tracker.current.cartItems[idx].variant.product.title} </span></div>
-                              <div><span style={{ fontSize: "12px" }}>30x40cm / A / Stretcher Frame  $17.30</span></div>
-                            </div>
-                          </div>
-                          <div className="col-2 d-flex flex-column justify-content-around align-items-center">
-                            <TbEdit onClick={() => { setEditPage(true) }} />
-                            <FaTrashAlt />
-                          </div>
-                        </React.Fragment>
-                    }
-                  </div>
-                </ListGroup.Item>
-  
-              ))}
-              </React.Fragment>
-              
-              : <h1>Waiting</h1>
+                <React.Fragment>
+                  {Array.from({ length: tracker.current.cartItems.length }).map((_, idx) => (
+                    <ListGroup.Item >
+                      <div className="row">
+                        <div className="col-4 d-flex justify-content-center align-items-center">
+                          <img src={tracker.current.cartItems[idx].variant.model_image} alt="..." className="img-fluid" style={{ aspectRatio: "1/1", objectFit: "cover" }} />
+                        </div>
+                        {
+                          editCartPage ?
+                            <div className="col-8">
+                              <div>
+                                Testing
+                                <Form.Group controlId="formAuthorName">
+                                  <Form.Label>Update quantity</Form.Label>
+                                  <Form.Control type="number" name="newQuantity" min="1" max="10" />
+                                </Form.Group>
+                                <MdDoneOutline onClick={makePageReload} />
+                              </div>
+
+                            </div> :
+                            <React.Fragment>
+                              <div className="col-6">
+                                <div>
+                                  <div><span style={{ fontSize: "14px" }}>{tracker.current.cartItems[idx].variant.product.title} </span></div>
+                                  <div>
+                                    <span style={{ fontSize: "12px" }}>
+                                      {
+                                        `${tracker.current.cartItems[idx].dimension.dimension_size} / 
+                                        ${tracker.current.cartItems[idx].variant.model_name} / 
+                                        ${tracker.current.cartItems[idx].frame.frame_type}  $17.30`
+                                      }
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-2 d-flex flex-column justify-content-around align-items-center">
+                                <TbEdit onClick={() => { setEditPage(true) }} />
+                                <FaTrashAlt />
+                              </div>
+                            </React.Fragment>
+                        }
+                      </div>
+                    </ListGroup.Item>
+
+                  ))}
+                </React.Fragment>
+                : <h1>Waiting</h1>
             }
-            
+
 
 
           </ListGroup>
