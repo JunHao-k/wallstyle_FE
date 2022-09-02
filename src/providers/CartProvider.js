@@ -4,8 +4,8 @@ import CartContext from '../contexts/CartContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-//const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/cart"
-const BASE_URL = "https://wall-style.herokuapp.com/api/cart"
+const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/cart"
+//const BASE_URL = "https://wall-style.herokuapp.com/api/cart"
 
 export default function CartProvider(props){
 

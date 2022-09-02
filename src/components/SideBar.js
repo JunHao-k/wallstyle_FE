@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
+import Badge from 'react-bootstrap/Badge';
 import "../css/navbar.css"
 import { Link, useNavigate } from "react-router-dom"
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -48,6 +49,8 @@ export default function NavBar() {
   const [editCartPage, setEditPage] = useState(false)
 
   const [priceTable , setPrices] = useState([])
+
+
   
 
   const calculatePrices = async () => {
@@ -78,7 +81,7 @@ export default function NavBar() {
     const loadedCartItems = await cartContext.getCart()
     setCartItems(loadedCartItems)
     tracker.current = loadedCartItems
-    console.log("The tracker current ==> ", tracker.current)
+    //console.log("The tracker current ==> ", tracker.current)
     let allPrices = await calculatePrices()
     //console.log("allPrices ==> " , allPrices)
     setPrices(allPrices)
@@ -90,19 +93,6 @@ export default function NavBar() {
     (async () => {
       console.log("The state of the cart items ==> ", cart)
       console.log("The tracker current ==> ", tracker.current)
-
-      // for(let item of cart){
-      //   let originalPrice = (item.dimension.dimension_cost + item.frame.frame_cost) * item.quantity
-      //   let discountedPrice = ((100-(item.variant.product.sales))/100) * originalPrice
-
-      //   tracker.current.original.push(originalPrice)
-      //   tracker.current.discounted.push(discountedPrice)
-      //   tracker.current.total = tracker.current.total + discountedPrice
-
-      //   console.log("This is current tracker ==> " , tracker.current)
-
-      // }
-
     })()
   }, [cart])
 
@@ -182,18 +172,18 @@ export default function NavBar() {
                       <div className="row">
                         <div className="col-4 d-flex-column justify-content-center align-items-center">
                           <img src={tracker.current.cartItems[idx].variant.model_image} alt="..." className="img-fluid" style={{ aspectRatio: "1/1", objectFit: "cover" }} />
+                          {tracker.current.cartItems[idx].variant.product.sales ? <Badge bg="secondary" className="mt-3">{tracker.current.cartItems[idx].variant.product.sales}% off</Badge> : ""}
                         </div>
-                       
+                        
                         {
                           editCartPage ?
                             <div className="col-8">
                               <div>
-                                Testing
-                                <Form.Group controlId="formAuthorName">
+                                <Form.Group>
                                   <Form.Label>Update quantity</Form.Label>
-                                  <Form.Control type="number" name="newQuantity" min="1" max="10" />
+                                  <Form.Control className="mb-2" type="number" name="quantity" min="1" max={tracker.current.cartItems[idx].variant.model_stock}/>
                                 </Form.Group>
-                                <MdDoneOutline onClick={makePageReload} />
+                                <a className="btn btn-dark btn-outline-light" size="sm" onClick={makePageReload}>Update</a>
                               </div>
 
                             </div> :
@@ -206,12 +196,15 @@ export default function NavBar() {
                                       {
                                         `${tracker.current.cartItems[idx].dimension.dimension_size} / 
                                         ${tracker.current.cartItems[idx].variant.model_name} / 
-                                        ${tracker.current.cartItems[idx].frame.frame_type} (On sale)`
+                                        ${tracker.current.cartItems[idx].frame.frame_type}`
                                       }
 
                                     </span>
                                   </div>
-                                  <div><span style={{ fontSize: "12px" }}>${(priceTable.discounted[idx]/100).toFixed(2)}</span></div>
+                                  <div>
+                                    <span style={{ fontSize: "12px" }}>${(priceTable.discounted[idx]/100).toFixed(2)}</span>
+                                    <span style={{ fontSize: "12px" , marginLeft: "1em" }}>Quantity: {tracker.current.cartItems[idx].quantity}</span>
+                                  </div>
                                 </div>
                               </div>
                               <div className="col-2 d-flex flex-column justify-content-around align-items-center">
