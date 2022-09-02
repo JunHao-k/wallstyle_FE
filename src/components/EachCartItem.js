@@ -1,17 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { TbEdit } from "react-icons/tb"
 import { FaTrashAlt } from "react-icons/fa"
 import Form from 'react-bootstrap/Form';
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
+import CartContext from '../contexts/CartContext';
 
 export default function EachCartItem(props) {
+
+    const cartContext = useContext(CartContext)
+    const [quantity, setQuantity] = useState(props.cart.quantity)
+    const [editPage, setEditPage] = useState(false)
+    const [warning, setWarning] = useState(false)
+
+    const updateFormField = (event) => {
+        if (event.target.value > props.cart.variant.model_stock) {
+            setQuantity(props.cart.variant.model_stock)
+            setWarning(true)
+        }
+        else if (Number(event.target.value) <= 0) {
+            setQuantity(1)
+            setWarning(true)
+        }
+        else {
+            setQuantity(event.target.value)
+        }
+    }
     
-    const [quantity , setQuantity] = useState(props.cart.quantity)
-    const [editPage , setEditPage] = useState(false)
     
 
-    const updateBtnClicked = () => {
+    const updateBtnClicked = async () => {
+        let updateRes = await cartContext.updateCart({
+            "variantId": props.cart.variant_id,
+            "frameId": props.cart.frame_id,
+            "dimensionId": props.cart.dimension_id,
+            "quantity": quantity
+        })
         setEditPage(false)
         props.makeReload(true)
     }
@@ -30,7 +54,8 @@ export default function EachCartItem(props) {
                             <div>
                                 <Form.Group>
                                     <Form.Label>Update quantity</Form.Label>
-                                    <Form.Control className="mb-2" type="number" name="quantity" min="1" max={props.cart.variant.model_stock} />
+                                    <Form.Control className="mb-2" type="number" name="newQuantity" value={quantity} min="1" max={props.cart.variant.model_stock} onChange={updateFormField} />
+                                    <div className = "mb-2">{warning ? <span style={{color: "red" , fontSize: "10px"}}>*Only {props.cart.variant.model_stock} available</span> : ""}</div>
                                 </Form.Group>
                                 <a className="btn btn-dark btn-outline-light" onClick={updateBtnClicked}>Update</a>
                             </div>

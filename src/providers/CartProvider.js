@@ -18,6 +18,7 @@ export default function CartProvider(props){
 
     const cartContext = {
         bodyInfo, setBodyInfo,
+        
         addCartItem: async (bodyInfo) => {
             const tokens = JSON.parse(localStorage.getItem("myTokens"))
             try{
@@ -65,6 +66,45 @@ export default function CartProvider(props){
                     }
                 })
                 return response.data
+            }
+        },
+        updateCart: async (updateInfo) => {
+            const tokens = JSON.parse(localStorage.getItem("myTokens"))
+            
+            try{
+                if(tokens.accessToken){
+                    const response = await axios.put(BASE_URL + `/${updateInfo.variantId}/update` , {
+                        'frameId': updateInfo.frameId,
+                        'dimensionId': updateInfo.dimensionId,
+                        'quantity': updateInfo.quantity
+                    },{
+                        headers: {
+                            Authorization: `Bearer ${tokens.accessToken}`
+                        }
+                    })
+                    toast.success('Item updated successfully!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    return response
+                } 
+            }
+            catch(error){
+                console.log(error)
+                toast.error('An error occurred while updating the cart, please try again', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         }
     }
