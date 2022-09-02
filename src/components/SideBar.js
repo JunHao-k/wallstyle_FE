@@ -42,8 +42,6 @@ export default function NavBar() {
   const [cartLoaded, setCartLoaded] = useState(false);
   const [forceReload, setForceReload] = useState(false)
 
-  const [editCartPage, setEditPage] = useState(false)
-
   const [priceTable , setPrices] = useState([])
 
 
@@ -91,10 +89,10 @@ export default function NavBar() {
   //   })()
   // }, [cart])
 
-  const makePageReload = () => {
-    setForceReload(true)
-    setEditPage(false)
-  }
+  // const makePageReload = () => {
+  //   setForceReload(true)
+  //   setEditPage(false)
+  // }
 
   useEffect(() => {
     (async () => {

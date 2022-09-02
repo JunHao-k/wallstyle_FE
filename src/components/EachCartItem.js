@@ -40,6 +40,17 @@ export default function EachCartItem(props) {
         props.makeReload(true)
     }
 
+    const deleteBtnClicked = async () => {
+        console.log("Props.cart.variantid" , props.cart.variant_id )
+        console.log("Props.cart.cartId" , props.cart.id )
+        let deleteRes = await cartContext.deleteCartItem({
+            "variantId": props.cart.variant_id,
+            "cartId": props.cart.id
+        })
+        setEditPage(false)
+        console.log("This is response data ==> " , deleteRes.data)
+    }
+
     return (
         <ListGroup.Item >
             <div className="row">
@@ -82,7 +93,7 @@ export default function EachCartItem(props) {
                             </div>
                             <div className="col-2 d-flex flex-column justify-content-around align-items-center">
                                 <TbEdit onClick={() => { setEditPage(true) }} />
-                                <FaTrashAlt />
+                                <FaTrashAlt onClick={deleteBtnClicked}/>
                             </div>
                         </React.Fragment>
                 }

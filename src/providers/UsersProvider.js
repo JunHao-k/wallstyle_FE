@@ -93,6 +93,7 @@ export default function UsersProvider(props){
             })
             localStorage.removeItem('myTokens')
             localStorage.removeItem('userData')
+            localStorage.removeItem("cart")
             inputTokens(null)
             setCustomer(null)
             console.log("After logging out ==> " , JSON.parse(localStorage.getItem("myTokens")))
