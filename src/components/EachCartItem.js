@@ -45,9 +45,8 @@ export default function EachCartItem(props) {
         console.log("Props.cart.cartId" , props.cart.id )
         let deleteRes = await cartContext.deleteCartItem({
             "variantId": props.cart.variant_id,
-            "cartId": props.cart.id
+            "cartId": parseInt(props.cart.id)
         })
-        setEditPage(false)
         console.log("This is response data ==> " , deleteRes.data)
     }
 

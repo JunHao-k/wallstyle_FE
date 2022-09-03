@@ -114,15 +114,14 @@ export default function CartProvider(props) {
 
                     console.log("This is access token => " , tokens.accessToken)
                     console.log("variantid" , deleteInfo.variantId)
-                    console.log("cartId" , deleteInfo.cartId)
+                    console.log("cartId" , typeof(deleteInfo.cartId))
                     
-                    const response = await axios.delete(BASE_URL + `/delete/${deleteInfo.variantId}`, {
-                        'cartId': deleteInfo.cartId
-                    }, {
-                        headers: {
-                            Authorization: `Bearer ${tokens.accessToken}`
+                    const response = await axios.delete(BASE_URL + `/delete/${deleteInfo.cartId}/variant/${deleteInfo.variantId}`, {
+                            headers: {
+                                Authorization: `Bearer ${tokens.accessToken}`
+                            }
                         }
-                    })
+                    )
                     toast.success('Cart Item deleted successfully!', {
                         position: "top-right",
                         autoClose: 5000,
