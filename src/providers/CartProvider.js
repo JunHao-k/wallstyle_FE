@@ -7,6 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/cart"
 // const BASE_URL = "https://wall-style.herokuapp.com/api/cart"
 
+const CHECKOUT_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/checkout"
+// const BASE_URL = "https://wall-style.herokuapp.com/api/checkout"
+
 export default function CartProvider(props) {
 
     const [bodyInfo, setBodyInfo] = useState({
@@ -145,6 +148,47 @@ export default function CartProvider(props) {
                     draggable: true,
                     progress: undefined,
                 });
+            }
+        },
+
+        checkout: async () => {
+            console.log("Function checkout is called")
+            try{
+                const cartItems = await cartContext.getCart()
+                const tokens = JSON.parse(localStorage.getItem("myTokens"))
+                console.log("These are the cart items (cartItems.cartItems) ==> " , cartItems.cartItems)
+                // Empty array is not false, check also in case if array, it must be empty
+                if(!cartItems.cartItems || !cartItems.cartItems.length){
+                    toast.error('Please make sure your cart is not empty', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+                const response = await axios.get(CHECKOUT_URL , {
+                    headers: {
+                        Authorization: `Bearer ${tokens.accessToken}`
+                    }
+                })
+                console.log('response', response)
+                return response.data
+            }
+            catch(error){
+                console.log(error)
+                toast.error('An error occurred while checking out. Please try again', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                return false
             }
         }
     }

@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Products from './pages/Products';
 import Variants from './pages/Variants';
 import SideBar from "./components/SideBar"
+import Checkout from './pages/Checkout';
 import Banner from "./components/Banner"
 import { ToastContainer } from 'react-toastify';
 
@@ -26,7 +27,7 @@ function App() {
           <UsersProvider>
             <ProductsProvider>
               <CartProvider>
-                <SideBar/>
+                <SideBar />
               </CartProvider>
             </ProductsProvider>
           </UsersProvider>
@@ -57,6 +58,14 @@ function App() {
               <Register />
             </UsersProvider>
           } />
+
+          <Route path="/checkout" element={
+            <CartProvider>
+              <Checkout/>
+            </CartProvider>
+          } />
+
+
         </Routes>
       </Router>
       <ToastContainer />

@@ -83,6 +83,10 @@ export default function NavBar() {
 
   }
 
+  const checkout = () => {
+    navigate("/checkout")
+  }
+
   // useEffect(() => {
   //   (async () => {
 
@@ -223,6 +227,7 @@ export default function NavBar() {
               <div>Subtotal:</div>
               <div>${(priceTable.total/100).toFixed(2)}</div>
             </div>
+            <a className="btn btn-dark btn-outline-light" onClick = {checkout}>Checkout</a>
           </ListGroup>
         </Offcanvas.Body>
       </Offcanvas>

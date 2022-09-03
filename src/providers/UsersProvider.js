@@ -110,7 +110,7 @@ export default function UsersProvider(props){
 
         getUserData: () => {
             return customer
-        }
+        },
         
     }
 
