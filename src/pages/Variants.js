@@ -12,7 +12,7 @@ export default function Variants() {
 
   // const BASE_URL = "https://wall-style.herokuapp.com/api/products"
   const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/products"
-  
+
   const productContext = useContext(ProductContext)
   const cartContext = useContext(CartContext)
   const { product_id } = useParams();
