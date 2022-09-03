@@ -6,8 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function UsersProvider(props){
 
-    const BASE_URL = "https://wall-style.herokuapp.com/api/accounts"
-    // const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/accounts"
+    // const BASE_URL = "https://wall-style.herokuapp.com/api/accounts"
+    const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/accounts"
+
+    const OrdersURL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/orders"
 
     const [registerInfo, setRegisterInfo] = useState({
         'email': '',
@@ -88,7 +90,7 @@ export default function UsersProvider(props){
 
         logout: async () => {
             const tokenSet = JSON.parse(localStorage.getItem("myTokens"))
-            console.log("From the local storage ==> " , tokenSet)
+            // console.log("From the local storage ==> " , tokenSet)
             await axios.post(BASE_URL + "/logout" , {
                 refreshToken: tokenSet.refreshToken
             })
@@ -112,6 +114,35 @@ export default function UsersProvider(props){
         getUserData: () => {
             return customer
         },
+
+        // getOrderHistory: async () => {
+        //     const tokens = JSON.parse(localStorage.getItem("myTokens"))
+        //     try{
+        //         if(tokens.accessToken){
+        //             const response = await axios.get(OrdersURL , {
+        //                 headers: {
+        //                     Authorization: `Bearer ${tokens.accessToken}`
+        //                 }
+        //             })
+        //             console.log(response.data)
+        //             return response.data
+        //         }
+                
+        //     }
+        //     catch(error){
+        //         console.log(error)
+        //         toast.error('No transaction history', {
+        //             position: "top-right",
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //         });
+        //     }
+            
+        // }
         
     }
 

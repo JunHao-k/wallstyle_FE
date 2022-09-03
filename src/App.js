@@ -10,6 +10,7 @@ import Products from './pages/Products';
 import Variants from './pages/Variants';
 import SideBar from "./components/SideBar"
 import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
 import Banner from "./components/Banner"
 import { ToastContainer } from 'react-toastify';
 
@@ -61,10 +62,13 @@ function App() {
 
           <Route path="/checkout" element={
             <CartProvider>
-              <Checkout/>
+              <Checkout />
             </CartProvider>
           } />
 
+          <Route path="/orders" element={
+            <Orders/>
+          }/>
 
         </Routes>
       </Router>
