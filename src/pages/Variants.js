@@ -10,7 +10,9 @@ import Form from 'react-bootstrap/Form';
 
 export default function Variants() {
 
-  const BASE_URL = "https://wall-style.herokuapp.com/api/products"
+  // const BASE_URL = "https://wall-style.herokuapp.com/api/products"
+  const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/products"
+  
   const productContext = useContext(ProductContext)
   const cartContext = useContext(CartContext)
   const { product_id } = useParams();
@@ -38,12 +40,6 @@ export default function Variants() {
       console.log("Item not added into cart properly")
     }
   }
-
-
-  // 'frameId': '',
-  // 'dimensionId': '',
-  // 'quantity': 1
-
 
 
   const getVariant = async () => {
@@ -77,13 +73,15 @@ export default function Variants() {
         ...cartContext.bodyInfo, // Duplicate the original form object
         "frameId": 1,
         "dimensionId": 1,
-        "variantId": tracker.current[0].id
+        //"variantId": tracker.current[0].id
     })
     }
   }, [variants])
 
   return(
-    <div id="variants">
+    <div id="variants" className="row d-flex">
+      <div className = "col-lg-6">
+
       <Carousel>
         {Array.from({ length: tracker.current.length }).map((_, idx) => (
           <Carousel.Item>
@@ -105,9 +103,9 @@ export default function Variants() {
             />
           </Carousel.Item>
       </Carousel>
+      </div>
 
-
-
+      <div className = "col-lg-6">
       <div className="landing-section">
         <div className="title">{product.title}</div>
 
@@ -167,7 +165,7 @@ export default function Variants() {
           <a className="btn btn-dark btn-outline-light mt-3" onClick = {addToCart}>Add to cart</a>
           
         </Form.Group>
-        
+      </div>
       </div>
     </div>
   );

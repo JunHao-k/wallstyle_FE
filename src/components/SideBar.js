@@ -219,7 +219,7 @@ export default function NavBar() {
                     <EachCartItem cart = {tracker.current.cartItems[idx]} makeReload = {setForceReload} priceCheck = {priceTable} index = {idx}/>
                   ))}
                 </React.Fragment>
-                : <h1>Waiting</h1>
+                : ""
             }
           </ListGroup>
           <ListGroup>
