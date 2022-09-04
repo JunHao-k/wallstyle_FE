@@ -8,6 +8,7 @@ import { BsHandbag } from "react-icons/bs"
 import { HiOutlineUser } from "react-icons/hi"
 import { TbReportMoney } from "react-icons/tb"
 import EachCartItem from "./EachCartItem"
+import Spinner from './Spinner';
 
 
 
@@ -115,12 +116,13 @@ export default function NavBar() {
     <React.Fragment>
       <div className="navbar d-flex">
         <div className="navbar-icons">
-          <GiHamburgerMenu className="nav-icons" color="grey" onClick={handleShow} style={{ marginLeft: ".5em" }} />
+          <GiHamburgerMenu id="hamburgerMenu" className="nav-icons" color="grey" onClick={handleShow} style={{ marginLeft: ".5em" }} />
         </div>
 
-        <h2 className="user-name">{JSON.parse(localStorage.getItem("userData")) ? `Welcome ${first_name} ${last_name}` : ""}</h2>
+        {/* <h2 className="user-name">{JSON.parse(localStorage.getItem("userData")) ? `Welcome ${first_name} ${last_name}` : ""}</h2> */}
 
-        <div className="navbar-icons">
+        <div className="navbar-icons d-flex">
+          <h2 className="user-name">{JSON.parse(localStorage.getItem("userData")) ? `${first_name} ${last_name}` : ""}</h2>
           {JSON.parse(localStorage.getItem("userData")) ? <TbReportMoney className="nav-icons" color="grey" style={{ marginRight: ".5em" }} onClick={viewOrder}/> : <HiOutlineUser className="nav-icons" color="grey" style={{ marginRight: ".5em" }} onClick={() => navigate("/login")} />}
           {JSON.parse(localStorage.getItem("userData")) ? <BsHandbag className="nav-icons" color="grey" style={{ marginRight: ".5em" }} onClick={loadCartItems}/> : ""}
         </div>
@@ -159,7 +161,7 @@ export default function NavBar() {
                     <EachCartItem cart = {tracker.current.cartItems[idx]} makeReload = {setForceReload} priceCheck = {priceTable} index = {idx}/>
                   ))}
                 </React.Fragment>
-                : ""
+                : <Spinner/>
             }
           </ListGroup>
           <ListGroup>

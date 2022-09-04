@@ -1,35 +1,110 @@
-
-@media (min-width: 576px) {
-    #listing-card{
+@media screen and (max-width: 576px) {
+    #listing-card {
         width: 7rem;
     }
-    #accordion-header > .accordion-button{
+
+    #accordion-header>.accordion-button {
         font-size: 16px;
         background-color: #f9f8f6;
+    }
+
+    #main-accordion {
+        border: 2px solid #dfdad3;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    .card {
+        border: 0px !important;
+        text-decoration: none;
+        color: black;
+        box-shadow: 0px 10px 20px #dfdad3;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .card:hover {
+        color: unset !important;
+        transform: translate3d(0px, 10px, 0px);
+        transition: 0.5s ease;
+    }
+
+    .card-body {
+        height: 90px;
     }
 
 }
 
 
-@media (min-width: 768px) { 
-    #listing-card{
+@media (min-width: 768px) {
+    #listing-card {
         width: 13rem;
     }
-    #accordion-header > .accordion-button{
+
+    #main-accordion {
+        border: 2px solid #dfdad3;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    #accordion-header>.accordion-button {
         font-size: 24px;
         background-color: #f9f8f6;
+    }
+
+    .card {
+        border: 0px !important;
+        text-decoration: none;
+        color: black;
+        box-shadow: 0px 10px 20px #dfdad3;
+        /* box-shadow: 0 10px 20px rgba(223, 218, 211, .12), 0 4px 8px rgba(223, 218, 211, .06); */
+        cursor: pointer
+    }
+
+    .card:hover {
+        color: unset !important;
+        transform: translate3d(0px, 10px, 0px);
+        transition: 0.5s ease;
+    }
+
+    .card-body {
+        height: 80px;
     }
 }
 
 
 @media (min-width: 992px) {
-    #listing-card{
+    #main-accordion {
+        border: 2px solid #dfdad3;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    #listing-card {
         width: 13rem;
     }
-    #accordion-header > .accordion-button{
+
+    #accordion-header>.accordion-button {
         font-size: 27px;
         background-color: #f9f8f6;
     }
+
+    .card {
+        border: 0px !important;
+        text-decoration: none;
+        color: black;
+        box-shadow: 0px 10px 20px #dfdad3;
+        /* box-shadow: 0 10px 20px rgba(223, 218, 211, .12), 0 4px 8px rgba(223, 218, 211, .06); */
+        cursor: pointer
+    }
+
+    .card:hover {
+        color: unset !important;
+        transform: translate3d(0px, 10px, 0px);
+        transition: 0.5s ease;
+    }
+
+    .card-body {
+        height: 80px;
+    }
 }
-
-

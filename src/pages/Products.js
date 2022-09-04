@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom"
 import ProductContext from "../contexts/ProductContext"
 import "../css/products.css"
@@ -38,7 +38,7 @@ export default function Products() {
                         <Accordion.Item eventKey="0">
                             <Accordion.Header id="accordion-header">Search</Accordion.Header>
 
-                            <Accordion.Body>
+                            <Accordion.Body id="main-accordion">
                                 <Form.Group className="mb-3" controlId="formAuthorName">
                                     <Form.Label>Title search</Form.Label>
                                     <Form.Control type="text" placeholder="Enter title of product" name="title" value={searchQuery.title} onChange={updateFormField} />
@@ -99,7 +99,7 @@ export default function Products() {
                         </Accordion.Item>
                     </Accordion>
                 </div>
-                <div className="separator small left mb-3 mt-3" style={{ backgroundColor: "#494949" }}></div>
+                <div className="separator small left mb-3 mt-3 " style={{ backgroundColor: "#494949" }}></div>
                 <div className="mt-3 g-4 container-fluid">
                     <Row xs={2} md={3} lg={5} className="g-4" >
                         {allProducts.length ? Array.from({ length: allProducts.length }).map((_, idx) => (
@@ -107,6 +107,9 @@ export default function Products() {
                                 <Col className="card-holder">
                                     <Card id="listing-card" as={Link} to={`/variants/${allProducts[idx].id}`}>
                                         <Card.Img variant="top" src={allProducts[idx].image_set} />
+                                        <Card.Body >
+                                            <Card.Text><small>{allProducts[idx].title}</small></Card.Text>
+                                        </Card.Body>
                                     </Card>
                                 </Col>
                             </React.Fragment>

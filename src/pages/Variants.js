@@ -79,7 +79,7 @@ export default function Variants() {
   }, [variants])
 
   return(
-    <div id="variants" className="row d-flex">
+    <div id="variants" className="row d-flex mb-3">
       <div className = "col-lg-6">
 
       <Carousel>
@@ -106,14 +106,11 @@ export default function Variants() {
       </div>
 
       <div className = "col-lg-6">
-      <div className="landing-section">
+      <div className="landing-section ps-3">
         <div className="title">{product.title}</div>
 
         <div className="price">
           <span>Base price: </span>
-          {/* <span className="original-price">
-            $29.90
-          </span> */}
 
           &nbsp;
 

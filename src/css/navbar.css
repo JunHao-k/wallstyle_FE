@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cedarville+Cursive&family=Lekton&family=Roboto:wght@100&display=swap');
+
+
 .separator.small.left {
     height: 1px;
     width: 90%;
@@ -51,11 +55,6 @@
 }
 
 
-.user-name {
-    font-size: 18px ;
-}
-
-
 
 .nav-icons {
     font-size: 1.5em;
@@ -64,8 +63,31 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 576px){
+    #hamburgerMenu{
+        margin-bottom: 0.3em;
+    }
+
+    .user-name {
+        margin-right: 0.7em;
+        font-size: 18px;
+        font-family: 'Caveat', cursive;
+    }
+    .nav-icons {
+        font-size: 1.3em;
+    }
+}
+
 @media (min-width: 992px) {
-   .nav-icons {
-    font-size: 2.5em;
-   }
+    .nav-icons {
+        font-size: 2.5em;
+    }
+
+    .user-name {
+        margin-right: 0.7em;
+        font-size: 30px;
+        /* font-family: Madera,sans-serif; */
+        font-family: 'Caveat', cursive;
+    }
+   
 }

@@ -84,7 +84,7 @@ export default function Orders() {
                                         <td><a href={tracker.current[idx].receipt_url} className="btn btn-dark btn-outline-light btn-sm" target="_blank">
                                             <FaEye/>
                                         </a></td>
-                                        <td>{tracker.current[idx].order_date}</td>
+                                        <td>{tracker.current[idx].order_date.slice(0,10)}</td>
                                     </tr>
                                 ))}
                             </React.Fragment>
