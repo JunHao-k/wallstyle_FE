@@ -34,7 +34,7 @@ export default function Orders() {
             });
         }
         else {
-            tracker.current = orders
+            tracker.current = orderRes.data
             setOrders(orderRes.data)
         }
 
