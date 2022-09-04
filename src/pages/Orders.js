@@ -8,7 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaEye } from "react-icons/fa"
 
 export default function Orders() {
-    const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/orders"
+    // const BASE_URL = "https://8000-junhaok-p3wallstyle-qln0hp2s15f.ws-us63.gitpod.io/api/orders"
+    const BASE_URL = "https://wall-style.herokuapp.com/api/orders"
 
     // const getOrders =  userContext.getOrderHistory
     const [orders, setOrders] = useState([])
