@@ -26,8 +26,8 @@ export default function EachCartItem(props) {
             setQuantity(event.target.value)
         }
     }
-    
-    
+
+
 
     const updateBtnClicked = async () => {
         let updateRes = await cartContext.updateCart({
@@ -41,13 +41,13 @@ export default function EachCartItem(props) {
     }
 
     const deleteBtnClicked = async () => {
-        console.log("Props.cart.variantid" , props.cart.variant_id )
-        console.log("Props.cart.cartId" , props.cart.id )
+        console.log("Props.cart.variantid", props.cart.variant_id)
+        console.log("Props.cart.cartId", props.cart.id)
         let deleteRes = await cartContext.deleteCartItem({
             "variantId": props.cart.variant_id,
             "cartId": parseInt(props.cart.id)
         })
-        console.log("This is response data ==> " , deleteRes.data)
+        console.log("This is response data ==> ", deleteRes.data)
     }
 
     return (
@@ -65,7 +65,7 @@ export default function EachCartItem(props) {
                                 <Form.Group>
                                     <Form.Label>Update quantity</Form.Label>
                                     <Form.Control className="mb-2" type="number" name="newQuantity" value={quantity} min="1" max={props.cart.variant.model_stock} onChange={updateFormField} />
-                                    <div className = "mb-2">{warning ? <span style={{color: "red" , fontSize: "10px"}}>*Only {props.cart.variant.model_stock} available</span> : ""}</div>
+                                    <div className="mb-2">{warning ? <span style={{ color: "red", fontSize: "10px" }}>*Only {props.cart.variant.model_stock} available</span> : ""}</div>
                                 </Form.Group>
                                 <a className="btn btn-dark btn-outline-light" onClick={updateBtnClicked}>Update</a>
                             </div>
@@ -91,8 +91,12 @@ export default function EachCartItem(props) {
                                 </div>
                             </div>
                             <div className="col-2 d-flex flex-column justify-content-around align-items-center">
-                                <TbEdit className="btn btn-dark btn-outline-light btn-sm" style = {{cursor: "pointer"}} onClick={() => { setEditPage(true) }} />
-                                <FaTrashAlt className="btn btn-dark btn-outline-light btn-sm" style = {{cursor: "pointer"}} onClick={deleteBtnClicked}/>
+                                <a className="btn btn-dark btn-outline-light btn-sm" >
+                                    <TbEdit style={{ cursor: "pointer" }} onClick={() => { setEditPage(true) }}/>
+                                </a>
+                                <a className="btn btn-dark btn-outline-light btn-sm" >
+                                    <FaTrashAlt style={{ cursor: "pointer" }} onClick={deleteBtnClicked}/>
+                                </a>
                             </div>
                         </React.Fragment>
                 }

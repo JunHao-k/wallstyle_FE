@@ -161,10 +161,10 @@ export default function NavBar() {
                     <EachCartItem cart = {tracker.current.cartItems[idx]} makeReload = {setForceReload} priceCheck = {priceTable} index = {idx}/>
                   ))}
                 </React.Fragment>
-                : ""
+                : <Spinner/>
             }
           </ListGroup>
-          <div className="separator small left mt-3 p-3" style={{ backgroundColor: "#494949" }}></div>
+          <div className="separator small left mt-3 mb-3" style={{ backgroundColor: "#494949" }}></div>
           <ListGroup>
             <div className="row d-flex">
               <div className='col-6'><h4>Subtotal:</h4></div>
