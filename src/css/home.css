@@ -4,6 +4,7 @@
     object-fit: cover;
 }
 
+
 .design-image {
     margin-top: 10px;
     height: 15rem;
@@ -11,6 +12,7 @@
     object-fit: cover;
     margin-left: 15px;
 }
+
 
 .buy-reasons {
     display: flex;
@@ -33,6 +35,7 @@
         height: 125vh;
         background-image: url(../../src/images/home.jpg);
         background-size: cover;
+        padding-bottom: 20px;
     }
 
     .design-image {

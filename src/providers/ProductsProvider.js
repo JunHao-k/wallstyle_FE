@@ -28,35 +28,11 @@ export default function ProductsProvider(props) {
         const getAllThemes = async () => {
             let response = await axios.get(BASE_URL + "/themes")
             setThemes(response.data)
-            //console.log('theme data to state===',response.data)
             tracker.current=false;
         }
         getAllProducts()
         getAllThemes()
     }, [])
-
-    // useEffect(()=>{
-    //     if(!tracker.current){
-    //         const getProductsByTheme = async () => {
-    //             let productByThemeArr = []
-    //             for(let eachTheme of themes){
-    //                 let response = await axios.get(BASE_URL + "/theme/" + eachTheme[0])
-    //                 productByThemeArr.push(response.data[0]) 
-    //             }
-    //             setProductsByTheme(productByThemeArr)
-    //             tracker.current = false
-    //         }
-    //         getProductsByTheme()
-    //     }
-    // },[themes])
-
-    // useEffect(() => {
-    //     if(!tracker.current){
-    //         setContentLoaded(true)
-    //         console.log("Desired answer ==> " , productsByTheme)
-    //     }
-    // } , [productsByTheme])
-
 
     const getProductsBySearch = async () => {
         //console.log(searchQuery)
@@ -74,27 +50,12 @@ export default function ProductsProvider(props) {
         console.log("This is searchQuery after clearing ==> " , searchQuery)
     }
 
-    // useEffect(() => {
-    //     if(!tracker.current){
-    //         console.log("products saved in state => " , products)
-    //         setContentLoaded(true)
-    //     }
-    // } , [products])
-
     const productContext = {
         searchQuery , setSearchQuery,
         products, 
         getProducts: () => {
             return products
         },
-
-        // contentLoaded: () => {
-        //     return contentLoaded
-        // },
-    
-        // getProductsByTheme: () => {
-        //     return productsByTheme
-        // },
 
         getThemes: () => {
             return themes

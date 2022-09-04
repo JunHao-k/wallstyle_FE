@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
+import Spinner from '../components/Spinner';
 
 
 // import axios from 'axios';
@@ -109,7 +110,7 @@ export default function Products() {
                                     </Card>
                                 </Col>
                             </React.Fragment>
-                        )) : <h1>waiting results</h1>}
+                        )) : <Spinner/>}
                     </Row>
                 </div>
             </div>

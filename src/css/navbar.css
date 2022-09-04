@@ -34,7 +34,7 @@
 
 }
 
-.menu-options .separator.small.left:hover {
+.menu-options :hover {
     cursor: pointer;
 }
 
@@ -57,23 +57,15 @@
 
 
 
-/* @media (min-width: 768px) { 
-    #listing-card{
-        width: 13rem;
-    }
-    #accordion-header > .accordion-button{
-        font-size: 24px;
-        background-color: #f9f8f6;
-    }
+.nav-icons {
+    font-size: 1.5em;
+}
+.nav-icons:hover {
+    cursor: pointer;
 }
 
-
 @media (min-width: 992px) {
-    #listing-card{
-        width: 13rem;
-    }
-    #accordion-header > .accordion-button{
-        font-size: 27px;
-        background-color: #f9f8f6;
-    }
-} */
+   .nav-icons {
+    font-size: 2.5em;
+   }
+}

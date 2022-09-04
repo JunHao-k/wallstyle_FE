@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js'
+import Spinner from "../components/Spinner";
 
 // Context
 import CartContext from '../contexts/CartContext';
@@ -32,9 +33,9 @@ export default function Checkout(){
     })()
     return (
         <React.Fragment>
-            <div>
-                <h3>Checkout in process, do not refresh the page</h3>
-                {/* Spinner goes here */}
+            <div className="d-flex flex-column justify-content-center align-items-center mt-3">
+                <h3>Checkout in progress, do not refresh the page</h3>
+                <Spinner/>
             </div>
         </React.Fragment>
     )

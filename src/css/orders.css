@@ -1,0 +1,23 @@
+.orders-table{
+    width: 100%;
+    margin: 30px 0 30px;
+    overflow: auto;
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 20px 0.2rem rgba(52, 58, 64, 0.25)
+}
+
+table{
+    border-collapse: collapse;
+}
+
+tr{
+    border-bottom: 3px solid #eef0f3;
+}
+
+.orders-table thead{
+    background-color: #dfdad3;
+    color: black;
+    
+}

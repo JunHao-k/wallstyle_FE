@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Table from 'react-bootstrap/Table';
+import Spinner from '../components/Spinner';
+import "../css/orders.css"
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -53,7 +55,7 @@ export default function Orders() {
         tracker.current.length != 0
             ?
             <React.Fragment>
-                <div className="container-fluid mt-3">
+                <div className="container-fluid mt-3 orders-table">
                     <Table striped bordered hover responsive>
                         <thead>
                             <tr>
@@ -79,7 +81,9 @@ export default function Orders() {
                                         <td>{tracker.current[idx].payment_type}</td>
                                         <td>{(tracker.current[idx].total_cost/100).toFixed(2)}</td>
                                         <td>{tracker.current[idx].orderStatus.status}</td>
-                                        <td><a href={tracker.current[idx].receipt_url} className="btn btn-dark btn-outline-light btn-sm" target="_blank"><FaEye/></a></td>
+                                        <td><a href={tracker.current[idx].receipt_url} className="btn btn-dark btn-outline-light btn-sm" target="_blank">
+                                            <FaEye/>
+                                        </a></td>
                                         <td>{tracker.current[idx].order_date}</td>
                                     </tr>
                                 ))}
@@ -87,7 +91,7 @@ export default function Orders() {
                         </tbody>
                     </Table>
                 </div>
-            </React.Fragment> : <h1>Spinner goes here</h1>
+            </React.Fragment> : <Spinner/>
 
 
 

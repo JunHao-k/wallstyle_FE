@@ -87,16 +87,9 @@ export default function NavBar() {
     navigate("/checkout")
   }
 
-  // useEffect(() => {
-  //   (async () => {
-
-  //   })()
-  // }, [cart])
-
-  // const makePageReload = () => {
-  //   setForceReload(true)
-  //   setEditPage(false)
-  // }
+  const viewOrder = () => {
+    navigate("/orders")
+  }
 
   useEffect(() => {
     (async () => {
@@ -122,18 +115,18 @@ export default function NavBar() {
     <React.Fragment>
       <div className="navbar d-flex">
         <div className="navbar-icons">
-          <GiHamburgerMenu size="1.5em" color="grey" onClick={handleShow} style={{ marginLeft: ".5em" }} />
+          <GiHamburgerMenu className="nav-icons" color="grey" onClick={handleShow} style={{ marginLeft: ".5em" }} />
         </div>
 
         <h2 className="user-name">{JSON.parse(localStorage.getItem("userData")) ? `Welcome ${first_name} ${last_name}` : ""}</h2>
 
         <div className="navbar-icons">
-          {JSON.parse(localStorage.getItem("userData")) ? <TbReportMoney size="1.5em" color="grey" style={{ marginRight: ".5em" }} /> : <HiOutlineUser size="1.5em" color="grey" style={{ marginRight: ".5em" }} onClick={() => navigate("/login")} />}
-          <BsHandbag size="1.5em" color="grey" style={{ marginRight: ".5em" }} onClick={loadCartItems} />
+          {JSON.parse(localStorage.getItem("userData")) ? <TbReportMoney className="nav-icons" color="grey" style={{ marginRight: ".5em" }} onClick={viewOrder}/> : <HiOutlineUser className="nav-icons" color="grey" style={{ marginRight: ".5em" }} onClick={() => navigate("/login")} />}
+          {JSON.parse(localStorage.getItem("userData")) ? <BsHandbag className="nav-icons" color="grey" style={{ marginRight: ".5em" }} onClick={loadCartItems}/> : ""}
         </div>
       </div>
 
-      <Offcanvas className="sidebar-offcancvas" show={show} onHide={handleClose}>
+      <Offcanvas id = "menu" className="sidebar-offcancvas" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Menu</Offcanvas.Title>
         </Offcanvas.Header>
@@ -148,18 +141,13 @@ export default function NavBar() {
           <Offcanvas.Title onClick={async () => { await userContext.logout(); handleClose() }}>Log out</Offcanvas.Title>
           <div className="separator small left" style={{ backgroundColor: "#494949" }}></div>
 
-          {/* <Link to = "/login"><Offcanvas.Title>Login</Offcanvas.Title></Link>
-          <div className="separator small left" style={{backgroundColor: "#494949"}}></div>
-          
-          <Link to = "/register"><Offcanvas.Title>Register</Offcanvas.Title></Link>
-          <div className="separator small left" style={{backgroundColor: "#494949"}}></div> */}
         </Offcanvas.Body>
       </Offcanvas>
 
 
       <Offcanvas className="sidebar-offcancvas" show={cartShow} onHide={handleCartClose} placement="end">
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Cart</Offcanvas.Title>
+          <Offcanvas.Title><h4>Cart</h4></Offcanvas.Title>
         </Offcanvas.Header>
         <div className="separator small left" style={{ backgroundColor: "#494949" }}></div>
         <Offcanvas.Body className="menu-options">
@@ -168,54 +156,6 @@ export default function NavBar() {
               tracker.current.cartItems ?
                 <React.Fragment>
                   {Array.from({ length: tracker.current.cartItems.length }).map((_, idx) => (
-                    // <ListGroup.Item >
-                    //   <div className="row">
-                    //     <div className="col-4 d-flex-column justify-content-center align-items-center">
-                    //       <img src={tracker.current.cartItems[idx].variant.model_image} alt="..." className="img-fluid" style={{ aspectRatio: "1/1", objectFit: "cover" }} />
-                    //       {tracker.current.cartItems[idx].variant.product.sales ? <Badge bg="secondary" className="mt-3">{tracker.current.cartItems[idx].variant.product.sales}% off</Badge> : ""}
-                    //     </div>
-                        
-                    //     {
-                    //       editCartPage ?
-                    //         <div className="col-8">
-                    //           <div>
-                    //             <Form.Group>
-                    //               <Form.Label>Update quantity</Form.Label>
-                    //               <Form.Control className="mb-2" type="number" name="quantity" min="1" max={tracker.current.cartItems[idx].variant.model_stock}/>
-                    //             </Form.Group>
-                    //             <a className="btn btn-dark btn-outline-light" size="sm" onClick={makePageReload}>Update</a>
-                    //           </div>
-
-                    //         </div> :
-                    //         <React.Fragment>
-                    //           <div className="col-6">
-                    //             <div>
-                    //               <div><span style={{ fontSize: "14px" }}>{tracker.current.cartItems[idx].variant.product.title} </span></div>
-                    //               <div>
-                    //                 <span style={{ fontSize: "12px" }}>
-                    //                   {
-                    //                     `${tracker.current.cartItems[idx].dimension.dimension_size} / 
-                    //                     ${tracker.current.cartItems[idx].variant.model_name} / 
-                    //                     ${tracker.current.cartItems[idx].frame.frame_type}`
-                    //                   }
-
-                    //                 </span>
-                    //               </div>
-                    //               <div>
-                    //                 <span style={{ fontSize: "12px" }}>${(priceTable.discounted[idx]/100).toFixed(2)}</span>
-                    //                 <span style={{ fontSize: "12px" , marginLeft: "1em" }}>Quantity: {tracker.current.cartItems[idx].quantity}</span>
-                    //               </div>
-                    //             </div>
-                    //           </div>
-                    //           <div className="col-2 d-flex flex-column justify-content-around align-items-center">
-                    //             <TbEdit onClick={() => { setEditPage(true) }} />
-                    //             <FaTrashAlt />
-                    //           </div>
-                    //         </React.Fragment>
-                    //     }
-                    //   </div>
-                    // </ListGroup.Item>
-
                     <EachCartItem cart = {tracker.current.cartItems[idx]} makeReload = {setForceReload} priceCheck = {priceTable} index = {idx}/>
                   ))}
                 </React.Fragment>
@@ -223,11 +163,11 @@ export default function NavBar() {
             }
           </ListGroup>
           <ListGroup>
-            <div className="d-flex">
-              <div>Subtotal:</div>
-              <div>${(priceTable.total/100).toFixed(2)}</div>
+            <div className="row d-flex">
+              <div className='col-6'><h4>Subtotal:</h4></div>
+              <div className='col-6 d-flex justify-content-end'><h4>${(priceTable.total/100).toFixed(2)}</h4></div>
             </div>
-            <a className="btn btn-dark btn-outline-light" onClick = {checkout}>Checkout</a>
+            <a className="btn btn-dark btn-outline-light mt-3" onClick = {checkout}>Checkout</a>
           </ListGroup>
         </Offcanvas.Body>
       </Offcanvas>

@@ -61,7 +61,7 @@ export default function UsersProvider(props){
 
         login: async (loginData) => {
             const response = await axios.post(BASE_URL + "/login" , loginData)
-            if(response){
+            if(response.data){
                 // console.log("This is response.data ==> " , response.data)
                 const userData = await axios.get(BASE_URL + "/profile" , {
                     headers: {
@@ -114,35 +114,6 @@ export default function UsersProvider(props){
         getUserData: () => {
             return customer
         },
-
-        // getOrderHistory: async () => {
-        //     const tokens = JSON.parse(localStorage.getItem("myTokens"))
-        //     try{
-        //         if(tokens.accessToken){
-        //             const response = await axios.get(OrdersURL , {
-        //                 headers: {
-        //                     Authorization: `Bearer ${tokens.accessToken}`
-        //                 }
-        //             })
-        //             console.log(response.data)
-        //             return response.data
-        //         }
-                
-        //     }
-        //     catch(error){
-        //         console.log(error)
-        //         toast.error('No transaction history', {
-        //             position: "top-right",
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //         });
-        //     }
-            
-        // }
         
     }
 
