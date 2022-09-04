@@ -91,8 +91,8 @@ export default function EachCartItem(props) {
                                 </div>
                             </div>
                             <div className="col-2 d-flex flex-column justify-content-around align-items-center">
-                                <TbEdit onClick={() => { setEditPage(true) }} />
-                                <FaTrashAlt onClick={deleteBtnClicked}/>
+                                <TbEdit className="btn btn-dark btn-outline-light btn-sm" style = {{cursor: "pointer"}} onClick={() => { setEditPage(true) }} />
+                                <FaTrashAlt className="btn btn-dark btn-outline-light btn-sm" style = {{cursor: "pointer"}} onClick={deleteBtnClicked}/>
                             </div>
                         </React.Fragment>
                 }

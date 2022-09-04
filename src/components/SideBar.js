@@ -164,7 +164,7 @@ export default function NavBar() {
                 : <Spinner/>
             }
           </ListGroup>
-          <div className="separator small left" style={{ backgroundColor: "#494949" }}></div>
+          <div className="separator small left mt-3 p-3" style={{ backgroundColor: "#494949" }}></div>
           <ListGroup>
             <div className="row d-flex">
               <div className='col-6'><h4>Subtotal:</h4></div>
