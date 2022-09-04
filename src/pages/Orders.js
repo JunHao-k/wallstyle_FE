@@ -34,6 +34,7 @@ export default function Orders() {
             });
         }
         else {
+            tracker.current = orders
             setOrders(orderRes.data)
         }
 
@@ -48,7 +49,7 @@ export default function Orders() {
     }, [])
 
     useEffect(() => {
-        tracker.current = orders
+        // tracker.current = orders
         console.log("This is orders tracker current", tracker.current)
     }, [orders])
 
