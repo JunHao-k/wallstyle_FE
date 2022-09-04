@@ -1,0 +1,54 @@
+.home-image {
+    height: 42vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.design-image {
+    margin-top: 10px;
+    height: 15rem;
+    width: 90%;
+    object-fit: cover;
+    margin-left: 15px;
+}
+
+.buy-reasons {
+    display: flex;
+}
+
+.reasons {
+    height: 100px;
+    width: 100px
+}
+
+@media screen and (min-width: 992px) {
+    .home-image {
+        margin-top: 10px;
+        height: 78rem;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .img-container {
+        height: 125vh;
+        background-image: url(../../src/images/home.jpg);
+        background-size: cover;
+    }
+
+    .design-image {
+        margin-top: 10px;
+        height: 25rem;
+        width: 90%;
+        object-fit: cover;
+        margin-left: 15px;
+    }
+
+    .reasons {
+        height: 200px;
+        width: 200px
+    }
+
+    .test {
+        height: 200px
+    }
+}
