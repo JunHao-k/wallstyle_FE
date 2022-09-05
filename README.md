@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Wall Style
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Access live demo site [here](https://wall-style.netlify.app/)
 
-## Available Scripts
+![Screenshots of Wall Style's homepage](./src/images/wall-style_mockup.jpg)
 
-In the project directory, you can run:
+Test Accounts:
+1. Admin Panel at https://wall-style.herokuapp.com/accounts/login
+ - Owner account (Able to access everything)
+    - email: owner@hotmail.com
+    - password: password123
 
-### `npm start`
+ - Admin account (Able to see look at products and variants page, unable to do CRUD)
+    - email: admin@hotmail.com
+    - password: password123
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Customer at https://wall-style.netlify.app/login
+ - email: customer@test.com
+ - password: password123
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Background
 
-### `npm test`
+For most of us, our homes serves as a sanctuary that we can retreat to after a day of work and activities. Therefore, many people will spend time and money to decorate their homes in a way that is pleasing to their eyes and help them to switch to a more relaxed mode. Interior design comes into play and an inexpensive and efficient method to quickly brighten up dull walls are hanging art canvases as opposed to having to mix and match colours to repaint walls
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Overview
 
-### `npm run build`
+This E-commerce project will aim to supply home-owners that wants to change the general outlook of the walls in their houses with the right art. These art will be in the form of a canvas where home-owners can choose which frames and dimensions their wall art comes in. It will allow them to take ownership of their walls design rather than depend excessively on interior designers
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## The Five Planes of UI/UX
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Strategy
 
-### `npm run eject`
+#### Organization's Goals
+To act as a bridge between homeowners and their preferred ideal designs for the walls back in their homes
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Users' Goals
+As there is a high home ownership in Singapore, combined with the spread of this new trend via social media,families may look for creative ways to spruce up their home walls using their preferred pieces of art. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Organisation**
+   - Objective: To have an eCommerce ready for interested home owners looking for art canvases to decorate their walls
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Users: Homeowners**
+   - Objective: To look for their preferred art canvases to spruce up their house walls
+   - Needs:
+      - Able to search for art that are related to a theme
+      - Able to search for art that are able to be complemented with other art to form a set
+   - Demographics and Characteristics:
+       - New homeowners
+       - Homeowners that wants to design their own walls instead of depending on an interior designer
+   - Pain point:
+       - Not a lot of eCommerce to choose from for art pieces
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+User Stories | Acceptance Criteria(s)
+------------ | -------------
+As a homeowner, I would like to buy art pieces of a certain theme that I can use to decorate walls | Art canvases need to be labelled as under one or more themes
+As a homeowner, I would like to be able to buy a set of a | Plants need to be categorized by sizes for filtering option
