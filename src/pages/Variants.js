@@ -102,7 +102,7 @@ export default function Variants() {
     <div id="variants" className="row d-flex mb-3">
       <div className="col-lg-6">
 
-        <Carousel>
+        <Carousel className="p-3">
           {Array.from({ length: tracker.current.length }).map((_, idx) => (
             <Carousel.Item>
               <img
@@ -171,7 +171,7 @@ export default function Variants() {
 
             <Form.Label>Choose a Model</Form.Label>
             <Form.Select aria-label="Default select example" name="variantId" onChange={updateFormField}>
-              <option>-- Models --</option>
+              {/* <option>-- Models --</option> */}
               {Array.from({ length: variants.length }).map((_, idx) => (
                 <option value={variants[idx].id}>
                   {variants[idx].model_name}

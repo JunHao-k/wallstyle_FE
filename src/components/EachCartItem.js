@@ -38,6 +38,7 @@ export default function EachCartItem(props) {
         })
         setEditPage(false)
         props.makeReload(true)
+        window.location.reload()
     }
 
     const deleteBtnClicked = async () => {
@@ -47,7 +48,8 @@ export default function EachCartItem(props) {
             "variantId": props.cart.variant_id,
             "cartId": parseInt(props.cart.id)
         })
-        console.log("This is response data ==> ", deleteRes.data)
+        // console.log("This is response data ==> ", deleteRes.data)
+        window.location.reload()
     }
 
     return (
