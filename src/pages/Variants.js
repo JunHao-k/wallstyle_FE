@@ -26,17 +26,37 @@ export default function Variants() {
 
   const updateFormField = (event) => {
     setFormState({
-        ...cartContext.bodyInfo, // Duplicate the original form object
-        [event.target.name]: event.target.value // Rewrite the key that has changed
+      ...cartContext.bodyInfo, // Duplicate the original form object
+      [event.target.name]: event.target.value // Rewrite the key that has changed
     })
   }
 
   const addToCart = async () => {
-    const addCartRes = await createCartItem(cartContext.bodyInfo)
-    if(addCartRes){
-      navigate("/products")
+    if (!JSON.parse(localStorage.getItem("userData"))) {
+      navigate("/login")
+      return
     }
     else{
+      await createCart()
+    }
+    // else {
+    //   const addCartRes = await createCartItem(cartContext.bodyInfo)
+    //   if (addCartRes) {
+    //     navigate("/products")
+    //   }
+    //   else {
+    //     console.log("Item not added into cart properly")
+    //   }
+    // }
+
+  }
+
+  const createCart = async () => {
+    const addCartRes = await createCartItem(cartContext.bodyInfo)
+    if (addCartRes) {
+      navigate("/products")
+    }
+    else {
       console.log("Item not added into cart properly")
     }
   }
@@ -57,8 +77,8 @@ export default function Variants() {
   useEffect(() => {
     const start = async () => {
       let variantData = await getVariant()
-      console.log("This is the variant data  ===>  " , variantData)
-      console.log("This is variants state ==> " , variants)
+      console.log("This is the variant data  ===>  ", variantData)
+      console.log("This is variants state ==> ", variants)
       let productData = await getProduct()
       console.log("This is the product data  ===>  ", productData)
     }
@@ -68,101 +88,101 @@ export default function Variants() {
   useEffect(() => {
     if (!tracker.current) {
       tracker.current = variants
-      console.log("This is in tracker.current ==> " , tracker.current)
+      console.log("This is in tracker.current ==> ", tracker.current)
       setFormState({
         ...cartContext.bodyInfo, // Duplicate the original form object
         "frameId": 1,
         "dimensionId": 1,
         //"variantId": tracker.current[0].id
-    })
+      })
     }
   }, [variants])
 
-  return(
+  return (
     <div id="variants" className="row d-flex mb-3">
-      <div className = "col-lg-6">
+      <div className="col-lg-6">
 
-      <Carousel>
-        {Array.from({ length: tracker.current.length }).map((_, idx) => (
+        <Carousel>
+          {Array.from({ length: tracker.current.length }).map((_, idx) => (
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={tracker.current[idx].model_image}
+                alt="Model A"
+              />
+              <Carousel.Caption style={{ backgroundColor: "rgba(55,57,64,0.2)" }}>
+                <h3>Model {tracker.current[idx].model_name}</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
           <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src={tracker.current[idx].model_image}
-              alt="Model A"
-            />
-            <Carousel.Caption style = {{backgroundColor: "rgba(55,57,64,0.2)"}}>
-              <h3>Model {tracker.current[idx].model_name}</h3>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-        <Carousel.Item>
             <img
               className="d-block w-100"
               src={product.image_set}
               alt="Model A"
             />
           </Carousel.Item>
-      </Carousel>
+        </Carousel>
       </div>
 
-      <div className = "col-lg-6">
-      <div className="landing-section ps-3">
-        <div className="title">{product.title}</div>
+      <div className="col-lg-6">
+        <div className="landing-section ps-3">
+          <div className="title">{product.title}</div>
 
-        <div className="price">
-          <span>Base price: </span>
+          <div className="price">
+            <span>Base price: </span>
 
-          &nbsp;
+            &nbsp;
 
-          <span className="discounted-price">
-            $17.30
-          </span>
-        </div>
+            <span className="discounted-price">
+              $17.30
+            </span>
+          </div>
 
-        <Form.Text className="text-muted">
-          *Set includes canvas of size 30cm x 40cm
-          <br/>
-          *Any discount is reflected in the cart
-        </Form.Text> 
-        {/* <Form.Text className="text-muted">
+          <Form.Text className="text-muted">
+            *Set includes canvas of size 30cm x 40cm
+            <br />
+            *Any discount is reflected in the cart
+          </Form.Text>
+          {/* <Form.Text className="text-muted">
           
         </Form.Text> */}
-      </div>
+        </div>
 
-      <div>
-        <Form.Group className="mb-3 p-3 d-flex flex-column justify-content-around">
+        <div>
+          <Form.Group className="mb-3 p-3 d-flex flex-column justify-content-around">
 
-          <Form.Label>Choose a dimension</Form.Label>
-          <Form.Select aria-label="Default select example" name="dimensionId" onChange = {updateFormField}>
-            {/* <option>-- Dimensions --</option> */}
-            <option value="1">30cm x 40cm</option>
-            <option value="2">40cm x 60cm</option>
-            <option value="3">50cm x 70cm</option>
-            <option value="4">60cm x 80cm</option>
-          </Form.Select>
+            <Form.Label>Choose a dimension</Form.Label>
+            <Form.Select aria-label="Default select example" name="dimensionId" onChange={updateFormField}>
+              {/* <option>-- Dimensions --</option> */}
+              <option value="1">30cm x 40cm</option>
+              <option value="2">40cm x 60cm</option>
+              <option value="3">50cm x 70cm</option>
+              <option value="4">60cm x 80cm</option>
+            </Form.Select>
 
-          <Form.Label>Choose a Frame</Form.Label>
-          <Form.Select aria-label="Default select example" name="frameId" onChange = {updateFormField}>
-            {/* <option>-- Frames --</option> */}
-            <option value="1">Canvas Only</option>
-            <option value="2">Stretch Frame</option>
-            <option value="3">Floater Frame</option>
-          </Form.Select>
+            <Form.Label>Choose a Frame</Form.Label>
+            <Form.Select aria-label="Default select example" name="frameId" onChange={updateFormField}>
+              {/* <option>-- Frames --</option> */}
+              <option value="1">Canvas Only</option>
+              <option value="2">Stretch Frame</option>
+              <option value="3">Floater Frame</option>
+            </Form.Select>
 
-          <Form.Label>Choose a Model</Form.Label>
-          <Form.Select aria-label="Default select example" name="variantId" onChange = {updateFormField}>
-            <option>-- Models --</option>
-            {Array.from({ length: variants.length }).map((_, idx) => (
-              <option value={variants[idx].id}>
-                {variants[idx].model_name}
-              </option>
-            ))}
-          </Form.Select>
-          
-          <a className="btn btn-dark btn-outline-light mt-3" onClick = {addToCart}>Add to cart</a>
-          
-        </Form.Group>
-      </div>
+            <Form.Label>Choose a Model</Form.Label>
+            <Form.Select aria-label="Default select example" name="variantId" onChange={updateFormField}>
+              <option>-- Models --</option>
+              {Array.from({ length: variants.length }).map((_, idx) => (
+                <option value={variants[idx].id}>
+                  {variants[idx].model_name}
+                </option>
+              ))}
+            </Form.Select>
+
+            <a className="btn btn-dark btn-outline-light mt-3" onClick={addToCart}>Add to cart</a>
+
+          </Form.Group>
+        </div>
       </div>
     </div>
   );
