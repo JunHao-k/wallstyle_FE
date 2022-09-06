@@ -56,4 +56,23 @@ As there is a high home ownership in Singapore, combined with the spread of this
 User Stories | Acceptance Criteria(s)
 ------------ | -------------
 As a homeowner, I would like to buy art pieces of a certain theme that I can use to decorate walls | Art canvases need to be labelled as under one or more themes
-As a homeowner, I would like to be able to buy a set of a | Plants need to be categorized by sizes for filtering option
+As a homeowner, I would like to be able to buy a set of a matching art canvases | Art that is able to come in a set should be labelled to show if it is part of a set and each model in the set be shown individually before putting them together to see how a set will look like.
+As a homeowner, I would like to be able to save as much as I can on interior design after spending a ton of money on renovations or getting the house itself | Art canvases will also be categorised between those that have discounts and those that do not have any discount
+
+
+### Scope
+
+### Database
+![Entity Relationship Diagram](./src/images/ERD_diagram.jpg)
+
+ERD is drawn up to demonstrate the different relationship between enitities for the site before proceeding to model the database (SQL).
+
+![Logical Schema](./src/images/Logical_Schema.jpg)
+
+Logical Schema is drawn up based on the ERD diagram to show the relationship between tables and also the number of columns with its type defined.
+
+A backend server will thus be necessary in order to allow communication between the site and database. Therefore,an Express server have been set up and deployed to [Heroku](https://www.heroku.com/). API endpoints are accessible via the base at https://wall-style.herokuapp.com/api.
+
+#### Content
+As this is an eCommerce platform, shop owner will have to provide the content and products. Products, customers and orders will need to be managed. Express servers also serves as an admin panel for management of data, and it will be accessed after registering at https://wall-style.herokuapp.com/accounts/signup. Only the owner can register an account for admin users.
+
