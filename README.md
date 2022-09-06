@@ -63,7 +63,7 @@ As a homeowner, I would like to be able to save as much as I can on interior des
 ### Scope
 
 ### Database
-![Entity Relationship Diagram](./src/images/ERD_diagram.jpg)
+![Entity Relationship Diagram](./src/images/ERD_diagram.png)
 
 ERD is drawn up to demonstrate the different relationship between enitities for the site before proceeding to model the database (SQL).
 
