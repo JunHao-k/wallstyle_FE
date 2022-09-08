@@ -83,7 +83,7 @@ As this is an eCommerce platform, shop owner will have to provide the content an
 - Payment processing and ordering as a customer
 
 #### Admin 
-- Search function against attributes such as Title, Themes, having discounts, whether item is part of a set, minmum and maximum discount and date which product was added
+- Search function against attributes such as Title, Themes, having discounts, whether item is part of a set, minimum and maximum discount and date which product was added
 - Read products and their variants for stock checking purposes
 
 #### Owner
