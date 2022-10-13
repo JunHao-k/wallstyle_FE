@@ -100,11 +100,11 @@ export default function Products() {
                     </Accordion>
                 </div>
                 <div className="separator small left mb-3 mt-3 " style={{ backgroundColor: "#494949" }}></div>
-                <div className="mt-3 g-4 mb-3 container-fluid">
+                <div className="mt-3 g-4 mb-3 container-fluid ">
                     <Row xs={1} md={3} lg={5} className="g-4" >
                         {allProducts.length ? Array.from({ length: allProducts.length }).map((_, idx) => (
                             <React.Fragment key={allProducts[idx].id}>
-                                <Col className="card-holder">
+                                <Col className="card-holder d-flex justify-content-center">
                                     <Card id="listing-card" as={Link} to={`/variants/${allProducts[idx].id}`}>
                                         <Card.Img variant="top" src={allProducts[idx].image_set} />
                                         <Card.Body >

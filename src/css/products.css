@@ -1,6 +1,6 @@
 @media screen and (max-width: 576px) {
     #listing-card {
-        width: 7rem;
+        width: 16rem;
     }
 
     #accordion-header>.accordion-button {
